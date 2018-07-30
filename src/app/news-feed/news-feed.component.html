@@ -1,0 +1,292 @@
+<app-sidebar-left-fixed></app-sidebar-left-fixed>
+<app-sidebar-right-fixed></app-sidebar-right-fixed>
+<app-header-bp></app-header-bp>
+
+
+<div class="container">
+	<div class="row">
+
+		<!-- Main Content -->
+
+		<main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+
+			<div class="ui-block">
+				
+				<!-- News Feed Form  -->
+				
+				<div class="news-feed-form">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
+
+								<svg class="olymp-status-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-status-icon"></use></svg>
+
+								<span>Status</span>
+							</a> 
+						</li>
+						<li class="nav-item">
+							<a class="nav-link inline-items" data-toggle="tab" href="#profile-1" role="tab" aria-expanded="false">
+
+								<svg class="olymp-multimedia-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-multimedia-icon"></use></svg>
+
+								<span>Multimedia</span>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link inline-items" data-toggle="tab" href="#blog" role="tab" aria-expanded="false">
+								<svg class="olymp-blog-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-blog-icon"></use></svg>
+
+								<span>Blog Post</span>
+							</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+							<form #loginForm=ngForm (ngSubmit)="postNewsFeed()">
+								<div class="author-thumb">
+									<img src="assets/img/author-page.jpg" alt="author">
+								</div>
+								<div class="form-group with-icon label-floating is-empty">
+									<label class="control-label">Hôm nay bạn cảm thấy thế nào...</label>
+									<textarea 
+									class="form-control" 
+									placeholder="" 
+									ngModel name="content" 
+									[(ngModel)]="postNews.content"
+									#content="ngModel"	
+									required></textarea>
+									<small class="text-danger" style="margin-left: 20px" *ngIf="content.touched && !content.valid">nhập gì đó đi bạn êi</small>
+								</div>
+
+								<div class="add-options-message">
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
+										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+									</a>
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
+										<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+									</a>
+
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
+										<svg class="olymp-small-pin-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
+									</a>
+
+									<button type="submit" class="btn btn-primary btn-md-2" [disabled]="!loginForm.valid">Post Status</button>
+									<button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+
+								</div>
+
+							</form>
+						</div>
+
+						<div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
+							<form>
+								<div class="author-thumb">
+									<img src="assets/img/author-page.jpg" alt="author">
+								</div>
+								<div class="form-group with-icon label-floating is-empty">
+									<label class="control-label">Share what you are thinking here...</label>
+									<textarea class="form-control" placeholder=""  ></textarea>
+								</div>
+								<div class="add-options-message">
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
+										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+									</a>
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
+										<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+									</a>
+
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
+										<svg class="olymp-small-pin-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
+									</a>
+
+									<button class="btn btn-primary btn-md-2">Post Status</button>
+									<button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+
+								</div>
+
+							</form>
+						</div>
+
+						<div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
+							<form>
+								<div class="author-thumb">
+									<img src="assets/img/author-page.jpg" alt="author">
+								</div>
+								<div class="form-group with-icon label-floating is-empty">
+									<label class="control-label">Share what you are thinking here...</label>
+									<textarea class="form-control" placeholder=""  ></textarea>
+								</div>
+								<div class="add-options-message">
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
+										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+									</a>
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
+										<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+									</a>
+
+									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
+										<svg class="olymp-small-pin-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
+									</a>
+
+									<button class="btn btn-primary btn-md-2">Post Status</button>
+									<button   class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ... end News Feed Form  -->			</div>
+
+				<div id="newsfeed-items-grid" *ngFor="let itemPost of listPost">
+
+
+					<div class="ui-block">
+
+						<article class="hentry post has-post-thumbnail">
+
+							<div class="post__author author vcard inline-items">
+								<img src="{{itemPost.post_user_info.avatar}}" alt="author">
+
+								<div class="author-date">
+									<a href="javascript:void(0)" class="h6 post__author-name fn" [routerLink]="['/u', itemPost.post_user_info.uid_user]" >{{itemPost.post_user_info.name}}</a>
+									<div class="post__date">
+										<time class="published" datetime="2004-07-24T18:18">
+											{{itemPost.created_at}}
+										</time>
+									</div>
+								</div>
+
+								<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+									<ul class="more-dropdown">
+										<li>
+											<a href="#">Edit Post</a>
+										</li>
+										<li>
+
+											<a href="javascript:void(0)" (click)="deletePost(itemPost.post_id)">Delete Post</a>
+										</li>
+										<li>
+											<a href="#">Turn Off Notifications</a>
+										</li>
+										<li>
+											<a href="#">Select as Featured</a>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+
+							<p>{{itemPost.content}}
+							</p>
+
+							<div class="post-additional-info inline-items">
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'like')" class="post-add-icon inline-items">
+									<svg class="olymp-heart-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+									<span>{{itemPost.action_with_post.awp_like}} Likes</span>
+								</a>
+
+								<div class="comments-shared" (click)="updateActionStatus(itemPost.post_id,'comment')">
+									<a href="javascript:void(0)" class="post-add-icon inline-items">
+										<svg class="olymp-speech-balloon-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
+										<span>{{itemPost.action_with_post.awp_commet}} Comments</span>
+									</a>
+
+									<a href="javascript:void(0)" class="post-add-icon inline-items" (click)="updateActionStatus(itemPost.post_id,'share')">
+										<svg class="olymp-share-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+										<span>{{itemPost.action_with_post.awp_share}} Shares</span>
+									</a>
+								</div>
+
+
+							</div>
+
+							<div class="control-block-button post-control-button">
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'like')" class="btn btn-control">
+									<svg class="olymp-like-post-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-like-post-icon"></use></svg>
+								</a>
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'comment')" class="btn btn-control">
+									<svg class="olymp-comments-post-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+								</a>
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'share')" class="btn btn-control">
+									<svg class="olymp-share-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-share-icon"></use></svg>
+								</a>
+
+							</div>
+
+						</article>
+					</div>
+
+				</div>
+
+
+				<div class="timeline-wrapper" *ngIf="issetData">
+					<div class="timeline-item">
+						<div class="animated-background">
+							<div class="background-masker header-top"></div>
+							<div class="background-masker header-left"></div>
+							<div class="background-masker header-right"></div>
+							<div class="background-masker header-bottom"></div>
+							<div class="background-masker subheader-left"></div>
+							<div class="background-masker subheader-right"></div>
+							<div class="background-masker subheader-bottom"></div>
+							<div class="background-masker content-top"></div>
+							<div class="background-masker content-first-end"></div>
+							<div class="background-masker content-second-line"></div>
+							<div class="background-masker content-second-end"></div>
+							<div class="background-masker content-third-line"></div>
+							<div class="background-masker content-third-end"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <a *ngIf="issetData" (click)="getMorePost()" href="javascript:void(0)" class="btn btn-control btn-more"  data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a> -->
+				<h4 *ngIf="!issetData" class="text-center">Dữ liệu đã hết</h4>
+
+			</main>
+
+			<!-- ... end Main Content -->
+
+
+			<!-- Left Sidebar -->
+
+			<aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
+				<app-box-weather></app-box-weather>
+
+				<app-box-calendar></app-box-calendar>
+
+				<!-- W-Friend-Pages-Added -->
+
+				<app-box-page-you-may-like></app-box-page-you-may-like>
+
+				<!-- .. end W-Friend-Pages-Added -->
+
+			</aside>
+
+			<!-- ... end Left Sidebar -->
+
+
+			<!-- Right Sidebar -->
+
+			<aside class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
+				<app-box-birthday></app-box-birthday>
+				<app-box-friend-suggestions></app-box-friend-suggestions>
+				<app-box-activity-feed></app-box-activity-feed>
+			</aside>
+
+			<!-- ... end Right Sidebar -->
+		</div>
+	</div>
+
+	<app-windown-popup></app-windown-popup>
+	<app-windown-popup-chat></app-windown-popup-chat>

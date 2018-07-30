@@ -1,0 +1,243 @@
+<div class="landing-page">
+	
+
+	<div class="content-bg-wrap"></div>
+
+
+	<!-- Header Standard Landing  -->
+
+	<div class="header--standard header--standard-landing" id="header--standard">
+		<div class="container">
+			<div class="header--standard-wrap">
+
+				<a href="#" class="logo">
+					<div class="img-wrap">
+						<img src="assets/img/logo.png" alt="Olympus">
+						<img src="assets/img/logo-colored-small.png" alt="Olympus" class="logo-colored">
+					</div>
+					<div class="title-block">
+						<h6 class="logo-title">Panda</h6>
+						<div class="sub-title">SOCIAL NETWORK</div>
+					</div>
+				</a>
+
+				<a href="#" class="open-responsive-menu js-open-responsive-menu">
+					<svg class="olymp-menu-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+				</a>
+
+				<div class="nav nav-pills nav1 header-menu">
+					<div class="mCustomScrollbar">
+						<ul>
+							<li class="nav-item">
+								<a href="#" class="nav-link">Home</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ... end Header Standard Landing  -->
+	<div class="header-spacer--standard"></div>
+
+	<div class="container">
+		<div class="row display-flex">
+			<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+				<div class="landing-content">
+					<h1>Chào mừng bạn đến với mạng xã hội học tập</h1>
+					<p>chúng tôi mong muốn kết nối tất cả mọi người với nhau .. giúp cho việc học tập dễ dàng hơn ... với 5 triệu người dùng và hơn 100 nghìn giao viên .. chúng tôi cam kết đây là mạng xã hội học tập hiệu quả nhất
+					</p>
+					<a href="#" class="btn btn-md btn-border c-white">Tham gia ngay!</a>
+				</div>
+			</div>
+
+			<div class="col col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+
+				<!-- Login-Registration Form  -->
+
+				<div class="registration-login-form">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#profile" role="tab">
+								<svg class="olymp-login-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-login-icon"></use></svg>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#home" role="tab">
+								<svg class="olymp-register-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-register-icon"></use></svg>
+							</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane" id="home" role="tabpanel" data-mh="log-tab">
+							<div class="title h6">Đăng kí tham gia với Panda</div>
+							<form class="content" #loginForm=ngForm (ngSubmit)="onRegister()">
+								<div class="row">
+									<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group label-floating is-empty">
+											<label class="control-label">Họ</label>
+											<input 
+											type="text"
+											ngModel name="firstname" 
+											[(ngModel)]="form.firstname"
+											class="form-control" 
+											#firstname="ngModel" 
+											minlength="2"
+											required>
+											<div *ngIf="firstname.touched && !firstname.valid">
+												<small *ngIf="firstname.errors.required" class="text-danger">
+													Vui lòng nhập họ
+												</small>
+												<small *ngIf="firstname.errors.minlength" class="text-danger">
+													Họ phải lớn hơn hoặc bằng 2 kí tự
+												</small>
+											</div>
+										</div>		
+									</div>
+
+
+									<div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+										<div class="form-group label-floating is-empty">
+											<label class="control-label">Tên</label>
+											<input 
+											ngModel name="lastname" 
+											[(ngModel)]="form.lastname"
+											class="form-control" 
+											#lastname="ngModel" 
+											minlength="2"
+											required 
+											type="text" >
+											<div *ngIf="lastname.touched && !lastname.valid">
+												<small *ngIf="lastname.errors.required" class="text-danger">
+													Vui lòng nhập Tên
+												</small>
+												<small *ngIf="lastname.errors.minlength" class="text-danger">
+													Tên phải lớn hơn hoặc bằng 2 kí tự
+												</small>
+											</div>
+										</div>
+									</div>
+									<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+										<div class="form-group label-floating is-empty">
+											<label class="control-label">Địa chỉ email</label>
+											<input
+											ngModel name="email" 
+											[(ngModel)]="form.email"
+											#email="ngModel"
+											class="form-control" 
+											required
+											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+											type="email" >
+											<div *ngIf="!email.valid && email.touched">
+												<small class="text-danger" *ngIf="email.errors.required">
+													Vui lòng nhập địa chỉ email
+												</small>
+												<small class="text-danger" *ngIf="email.errors.pattern">
+													Địa chỉ email không đúng định dạng
+												</small>
+
+											</div>
+										</div>
+										<div class="form-group label-floating is-empty">
+											<label class="control-label">Mật khẩu</label>
+											<input 
+											ngModel name="password" 
+											[(ngModel)]="form.password"
+											class="form-control" 
+											#password="ngModel" 
+											required 
+											type="password" >
+											<small class="text-danger" *ngIf="!password.valid && password.touched">Vui lòng nhập mật khẩu</small>
+										</div>
+
+										<div class="form-group date-time-picker label-floating">
+											<label class="control-label">Ngày sinh</label>
+											<input 
+											ngModel name="datetimepicker" 
+											class="form-control" 
+											#datetimepicker="ngModel" 
+											[(ngModel)]="form.datetimepicker"
+											 >
+											<span class="input-group-addon">
+												<svg class="olymp-calendar-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+											</span>
+										
+										</div>
+
+										<div class="form-group label-floating is-select">
+											<label class="control-label">Giới tính</label>
+											<select class="selectpicker form-control" ngModel name="gender" 
+											[(ngModel)]="form.gender"
+											#gender="ngModel">
+											<option value="MA">Nam</option>
+											<option value="FE">Nữ</option>
+										</select>
+									</div>
+
+									<div class="remember">
+										<div class="checkbox">
+											<label>
+												<input ngModel name="optionsCheckboxes" type="checkbox" #optionsCheckboxes="ngModel">
+												Tôi đồng ý với <a href="#">Điều khoản và nội quy</a> của website
+											</label>
+										</div>
+										<small class="text-danger" *ngIf="!optionsCheckboxes.valid && optionsCheckboxes.touched">Vui lòng đồng ý với điều khoản dịch vụ</small>
+									</div>
+
+									<button type="submit" class="btn btn-purple btn-lg full-width" [disabled]="!loginForm.valid">Hoàn thành đăng kí!</button>
+								</div>
+							</div>
+						</form>
+					</div>
+ 
+					<div class="tab-pane active" id="profile" role="tabpanel" data-mh="log-tab">
+						<div class="title h6">Đăng nhập với tài khoản của bạn</div>
+						<form #loginForm=ngForm class="content" (ngSubmit)="onLogin()" >
+							<div class="row">
+								<div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group label-floating is-empty">
+										<label for="email" class="control-label">Địa chỉ email</label>
+										<input class="form-control" [(ngModel)]="form.email" name="email" id="email" type="email">
+									</div>
+									<div class="form-group label-floating is-empty">
+										<label for="password" class="control-label">Mật khẩu</label>
+										<input class="form-control" [(ngModel)]="form.password" name="password" id="password" type="password">
+									</div>
+
+									<div class="remember">
+
+										<div class="checkbox">
+											<label>
+												<input name="optionsCheckboxes" type="checkbox">
+												Ghi nhớ
+											</label>
+										</div>
+										<a href="#" class="forgot">Quên mật khẩu</a>
+									</div>
+
+									<button type="submit" class="btn btn-lg btn-primary full-width">Đăng nhập</button>
+
+									<div class="or"></div>
+
+									<a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fab fa-facebook-f" aria-hidden="true"></i>Đăng nhập với facebook</a>
+
+									<a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Đăng nhập với Twitter</a>
+
+
+									<p>Bạn chưa có tài khoản? <a href="#">Đăng kí ngay!</a> nó thật đơn giản để bắt đầu việc học tập của bạn!</p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- ... end Login-Registration Form  -->		
+		</div>
+	</div>
+</div>
+</div>
