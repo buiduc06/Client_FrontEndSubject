@@ -1,7 +1,7 @@
 
 <!-- Window-popup-CHAT for responsive min-width: 768px -->
-
-<div class="ui-block popup-chat popup-chat-responsive open" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
+ 
+<div class="ui-block popup-chat popup-chat-responsive open" id='chatRealtime'>
 
 	<div class="modal-content">
 		<div class="modal-header">
@@ -9,7 +9,7 @@
 			<h6 class="title" >Chat</h6>
 			<div class="more">
 				<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-				<svg class="olymp-little-delete js-chat-open"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+				<svg class="olymp-little-delete js-chat-open" (click)="openChat(12)"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
 			</div>
 		</div>
 		<div class="modal-body">
@@ -52,9 +52,9 @@
 
 		<div class="form-group label-floating is-empty">
 			<label class="control-label">Press enter to post...</label>
-			<textarea class="form-control" placeholder=""></textarea>
+			<textarea class="form-control" placeholder="" [(ngModel)]="msgInput" ngModel name="msgInput1"></textarea>
 			<div class="add-options-message">
-				<a href="#" class="options-message">
+				<a href="javascript:;" class="options-message" (click)="sendButtonClick()">
 					<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
 				</a>
 				<div class="options-message smile-block">
