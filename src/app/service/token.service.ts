@@ -4,19 +4,20 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root'
 })
 export class TokenService {
-private iss = {
-    login: 'http://apitest.net/api/login',
-    signup: 'http://apitest.net/api/signup',
-    logout: 'http://apitest.net/api/logout',
-  };
+	private iss = {
+		login: 'http://apitest.net/api/login',
+		signup: 'http://apitest.net/api/signup',
+		logout: 'http://apitest.net/api/logout',
+	};
 	constructor() { }
 
-	handle(token){
-		this.set(token);
+	handle(data){
+		this.set(data);
 	}
 
-	set(token){
-		localStorage.setItem('token', token)
+	set(data){
+		localStorage.setItem('token', data.token);
+		localStorage.setItem('user', btoa(JSON.stringify(data.user)));
 	}
 
 	get() {
@@ -24,6 +25,7 @@ private iss = {
 	}
 	remove() {
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	}
 
 	isValid() {
@@ -35,6 +37,10 @@ private iss = {
 			}
 		}
 		return false;
+	}
+
+	check() : boolean {
+		return localStorage.getItem('token') ? true : false;
 	}
 
 	payload(token) {
@@ -53,5 +59,5 @@ private iss = {
 		this.iss.logout
 		this.remove();
 	}
- 
+
 }

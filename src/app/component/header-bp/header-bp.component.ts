@@ -18,16 +18,23 @@ export class HeaderBpComponent implements OnInit {
   	private ApiService:ApiService,
   	) { }
 
-public dataUser;
+  public dataUser;
   ngOnInit() {
-   
+    this.ApiService.getMyInfo().subscribe(
+      data=>{
+        this.dataUser = data;
+      },Error=>{
+        alert(' có lỗi trong quá tring lấy user data');
+      }
+      );
   	// console.log(this.ApiService.getInfoUser());
   }
- 
+
   logout(){
   	this.token.logout();
   	this.router.navigateByUrl('/login');
   }
+
 
 
 }

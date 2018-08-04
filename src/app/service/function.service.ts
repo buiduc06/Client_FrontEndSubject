@@ -18,4 +18,14 @@ findIndexInObject(object ,post_id) {
 	}
 }
 
+findIndexInObjectById(object ,p_id) {
+	for(var i = 0; i < object.length; i++)
+	{
+		if(object[i].id == p_id)
+		{
+			return i;
+		}
+	}
+}
+
 }

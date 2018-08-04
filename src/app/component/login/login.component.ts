@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
 		.subscribe(
 			data => {
 				this.handleReponse(data);
-					return this.router.navigateByUrl('/');
-			 
-			},Error => {
 
+				return this.router.navigateByUrl('/');
+
+			},Error => {
 				alert("Tên tài khoản hoặc mật khẩu không chính xác");
 				this.router.navigateByUrl('/login');
 			}
@@ -63,13 +63,13 @@ export class LoginComponent implements OnInit {
 			);
 	}
 
- handleReponse(data){
- 	console.log(data);
-this.Token.handle(data.access_token);
- }
+	handleReponse(data){
+		console.log(data);
+		this.Token.handle(data);
+	}
 
 
-handleError(error){
-	this.error = error.error.error;
-}
+	handleError(error){
+		this.error = error.error.error;
+	}
 }

@@ -8,8 +8,8 @@ export class NewsfeedService {
 	private baseUrl = 'http://apitest.net/api/Feed';
 	constructor(private http: HttpClient) {}
 
-	getNewsFeed(user_id){
-		return this.http.post(`${this.baseUrl}/getNewsFeed`, user_id);
+	getNewsFeed(){
+		return this.http.get(`${this.baseUrl}/getNewsFeed`);
 	}
 
 	getNewsFeedMore(paginate){

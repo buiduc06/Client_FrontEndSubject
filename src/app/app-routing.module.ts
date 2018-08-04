@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
-
+import { AuthGuard } from './guards/auth.guard';
 const appRoutes: Routes = [
 	{
 		path: '',
-		component: NewsFeedComponent
+		component: NewsFeedComponent,
+		canActivate: [AuthGuard]
 	},
 	{
 		path: 'login',
@@ -15,7 +17,7 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'u/:id',
-		component: LoginComponent
+		component: ProfileComponent
 	}
 ];
 

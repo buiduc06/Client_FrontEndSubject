@@ -7,6 +7,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './component/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarLeftFixedComponent } from './component/sidebar-left-fixed/sidebar-left-fixed.component';
@@ -23,6 +24,9 @@ import { BoxCalendarComponent } from './component/box-calendar/box-calendar.comp
 import { BoxWeatherComponent } from './component/box-weather/box-weather.component';
 import { BoxBirthdayComponent } from './component/box-birthday/box-birthday.component';
 import { AuthComponent } from './service/auth/auth.component';
+import { TokenInterceptor } from './guards/intercreptors/token.intercreptor';
+import { ProfileHeaderComponent } from './component/profile-header/profile-header.component';
+// import { RefreshTokenInterceptor } from './guards/intercreptors/refreshToken.intercreptor';
 
 
 
@@ -43,7 +47,8 @@ import { AuthComponent } from './service/auth/auth.component';
     BoxCalendarComponent,
     BoxWeatherComponent,
     BoxBirthdayComponent,
-    AuthComponent
+    AuthComponent,
+    ProfileHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,10 @@ import { AuthComponent } from './service/auth/auth.component';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, 
+   // { provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor, multi: true },  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

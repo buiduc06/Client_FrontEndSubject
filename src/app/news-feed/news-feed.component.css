@@ -127,3 +127,65 @@
     left: 300px;
     top: 88px;
 }
+
+/*.ui-block .comments-list, .comments-list.style-2 .post__author{
+    padding: 0 20px;
+}
+.ui-block .comments-list .comment-item{
+    margin-bottom: 10px;
+}*/
+.author-thumb img{
+    width: 40px;
+}
+
+.show_img_beforeupload {
+    display: grid;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    justify-content: space-between;
+    grid-row-gap: 10px;
+    margin:10px;
+
+}
+.show_img_beforeupload img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    max-height: 150px;
+}
+
+#img_pop_upload{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    border: none;
+    outline: none;
+}
+
+.post-thumb {
+border-radius: 5px;
+overflow: hidden;
+position: relative;
+display: grid;
+grid-template-columns: auto auto auto auto;
+grid-row-gap: 10px;
+grid-column-gap: 10px;
+}
+.post-thumb img{
+ 
+max-height: 200px;
+object-fit: cover;
+ 
+
+}
+
+.buttonload {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px /* Set a font size */
+}

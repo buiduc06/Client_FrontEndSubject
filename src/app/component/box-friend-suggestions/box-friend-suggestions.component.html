@@ -1,66 +1,50 @@
-<div class="ui-block">
-				<div class="ui-block-title">
-					<h6 class="title">Friend Suggestions</h6>
-					<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
-				</div>
+<div class="ui-block" *ngIf="listFriend">
+	<div class="ui-block-title">
+		<h6 class="title">Đề xuất kết bạn</h6>
+		<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+	</div>
+	<!-- W-Action -->
 
-				
-				
-				<!-- W-Action -->
-				
-				<ul class="widget w-friend-pages-added notification-list friend-requests">
-					<li class="inline-items">
-						<div class="author-thumb">
-							<img src="assets/img/avatar38-sm.jpg" alt="author">
-						</div>
-						<div class="notification-event">
-							<a href="#" class="h6 notification-friend">Francine Smith</a>
-							<span class="chat-message-item">8 Friends in Common</span>
-						</div>
-						<span class="notification-icon">
-							<a href="#" class="accept-request">
-								<span class="icon-add without-text">
-									<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-								</span>
-							</a>
-						</span>
-					</li>
-				
-					<li class="inline-items">
-						<div class="author-thumb">
-							<img src="assets/img/avatar39-sm.jpg" alt="author">
-						</div>
-						<div class="notification-event">
-							<a href="#" class="h6 notification-friend">Hugh Wilson</a>
-							<span class="chat-message-item">6 Friends in Common</span>
-						</div>
-						<span class="notification-icon">
-							<a href="#" class="accept-request">
-								<span class="icon-add without-text">
-									<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-								</span>
-							</a>
-						</span>
-					</li>
-				
-					<li class="inline-items">
-						<div class="author-thumb">
-							<img src="assets/img/avatar40-sm.jpg" alt="author">
-						</div>
-						<div class="notification-event">
-							<a href="#" class="h6 notification-friend">Karen Masters</a>
-							<span class="chat-message-item">6 Friends in Common</span>
-						</div>
-						<span class="notification-icon">
-							<a href="#" class="accept-request">
-								<span class="icon-add without-text">
-									<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-								</span>
-							</a>
-						</span>
-					</li>
-				
-				</ul>
-				
-				<!-- ... end W-Action -->
+	<ul class="widget w-friend-pages-added notification-list friend-requests">
+		<li class="inline-items" *ngFor="let itemF of listFriend">
+			<div class="author-thumb">
+				<img src="{{itemF.avatar}}" alt="author">
 			</div>
+			<div class="notification-event">
+				<a href="javascript:void(0)" [routerLink]="['/u', itemF.uid_user]" class="h6 notification-friend">{{itemF.name}}</a>
+				<span class="chat-message-item">1 bạn chung</span>
+			</div>
+			<span class="notification-icon">
+				<a href="javascript:void(0)" class="accept-request">
+					<span class="icon-add without-text">
+						<svg class="olymp-happy-face-icon" (click)="makeFriend(itemF.id)">
+							<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use>
+						</svg>
+					</span>
+				</a>
+			</span>
+		</li>
+
+	</ul>
+
+	<!-- ... end W-Action -->
+</div>
+<div class="timeline-wrapper" *ngIf="!listFriend">
+	<div class="timeline-item">
+		<div class="animated-background">
+			<div class="background-masker header-top"></div>
+			<div class="background-masker header-left"></div>
+			<div class="background-masker header-right"></div>
+			<div class="background-masker header-bottom"></div>
+			<div class="background-masker subheader-left"></div>
+			<div class="background-masker subheader-right"></div>
+			<div class="background-masker subheader-bottom"></div>
+			<div class="background-masker content-top"></div>
+			<div class="background-masker content-first-end"></div>
+			<div class="background-masker content-second-line"></div>
+			<div class="background-masker content-second-end"></div>
+			<div class="background-masker content-third-line"></div>
+			<div class="background-masker content-third-end"></div>
+		</div>
+	</div>
+</div>
