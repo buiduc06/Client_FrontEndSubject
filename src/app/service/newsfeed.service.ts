@@ -25,7 +25,9 @@ export class NewsfeedService {
 	deletePost(post_id){
 		return this.http.post(`${this.baseUrl}/deletePost`, {'id':post_id});
 	}
-
-	 
+	updatePost(data){
+		return this.http.post(`${this.baseUrl}/updatePost`, data);
+	}
+	
 
 }

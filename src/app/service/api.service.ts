@@ -74,4 +74,18 @@ export class ApiService {
     return this.http.post(`${this.userData}/addCommentToPost`, {'comment':comment, 'post_id':post_id});
   }
 
+searchUser(data){
+   return this.http.post(`${this.userData}/searchUser`, data);
+}
+
+getRequestFriend(){
+  return this.http.get(`${this.userData}/getRequestFriend`);
+}
+
+appendFriends(data){
+  return this.http.post(`${this.userData}/appendFriends`, data);
+}
+miunusFriends(data){
+  return this.http.post(`${this.userData}/miunusFriends`, data);
+}
 }

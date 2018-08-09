@@ -28,4 +28,22 @@ findIndexInObjectById(object ,p_id) {
 	}
 }
 
+
+hasWhiteSpace(s)
+{
+
+
+     var reWhiteSpace = new RegExp(/^\s+$/);
+
+
+     // Check for white space
+     if (reWhiteSpace.test(s)) {
+          alert("Please Check Your Fields For Spaces");
+          return false;
+     }
+return true;
+}
+
+
+
 }

@@ -17,6 +17,8 @@ declare var $ :any;
 	styleUrls: ['./news-feed.component.css']
 })
 export class NewsFeedComponent implements OnInit {
+	public myInfo;
+
 
 	constructor(
 		private NewsFeed: NewsfeedService,
@@ -27,11 +29,10 @@ export class NewsFeedComponent implements OnInit {
 		private http: HttpClient
 		) {
 
-		// if (!this.Token.isValid()) {
-		// 	this.router.navigateByUrl('/login');
-		// }
+		// lấy thông tin của user
+		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
+		console.log(this.myInfo);
 	}
-	public myInfo;
 	public listPost;
 	public error:null;
 	public user_id;
@@ -47,6 +48,12 @@ export class NewsFeedComponent implements OnInit {
 		status:null,
 
 	};
+
+	public editPost = {
+		content:null,
+		post_id:null,
+	};
+
 	public comment ={
 		content:null,
 	}
@@ -68,19 +75,21 @@ export class NewsFeedComponent implements OnInit {
 	this.getMorePost(); 
 }, 3000);
 
-// lấy thông tin của user
-this.Api.getMyInfo().subscribe(data=>this.myInfo = data);
+
 }
 
 postNewsFeed(){
+
 	this.NewsFeed.postNewsFeed(this.postNews).subscribe(
 		maindata => {
-			if (this.FileTest) {
+			if (this.FileTest !=null) {
 				this.Api.upLoadImage(this.FileTest, maindata['post_id'],this.sizeObject).subscribe(
 					data => {
 						$('.show_img_beforeupload').empty();
 						$('#clean_inp').val('');
 						$('#clean_inp').text('');
+						$('#img_pop_upload').val('');
+						this.FileTest =null;
 						maindata['listImage'] = data;
 						this.listPost.unshift(maindata);
 					},Error => {
@@ -89,7 +98,8 @@ postNewsFeed(){
 			}else{
 				$('.show_img_beforeupload').empty();
 				$('#clean_inp').val('');
-				$('#clean_inp').text('');
+				$('#img_pop_upload').empty();
+
 				this.listPost.unshift(maindata);
 			}
 
@@ -97,9 +107,6 @@ postNewsFeed(){
 		},Error => {
 			alert("tạo bài viết thất bại");
 		});
-	// 	
-	
-
 }
 
 updateActionStatus(idPost, type){
@@ -130,7 +137,6 @@ getData(data){
 	this.listPost = data;
 };
 
-// xoa bai viet
 deletePost(post_id){
 	if (!confirm('ban có muốn xóa bài viết này ?')) {
 		return false;
@@ -174,7 +180,6 @@ commentF(id){
 	alert('msg');
 }
 
-// ============link
 linkRedirectProfile(id: number){
 	return this.router.navigateByUrl('/u/'+id);
 }
@@ -236,3 +241,25 @@ getMoreComment(){
 
 
 
+editMyPost(post_id){
+	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
+	this.editPost.post_id = post_id;
+	$('#clean_inp2').val(this.listPost[idObject2].content);
+	$('#modal-edit-post').modal('show');
+}
+
+postEditMyPost(){
+	var post_id = this.editPost.post_id;
+	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
+	this.listPost[idObject2].content = this.editPost.content;
+	console.log(post_id);
+	this.NewsFeed.updatePost(this.editPost).subscribe(data=>{
+		console.log(data);
+	},Error=>{
+		console.log('cập nhật bài viết bị lỗi');
+	}
+	);
+	
+	$('#modal-edit-post').modal('hide');
+}
+}
