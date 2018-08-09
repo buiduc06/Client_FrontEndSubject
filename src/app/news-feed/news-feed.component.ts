@@ -137,7 +137,7 @@ getData(data){
 	this.listPost = data;
 };
 
-deletePost(post_id){
+deletePost(post_id){ 
 	if (!confirm('ban có muốn xóa bài viết này ?')) {
 		return false;
 	}
