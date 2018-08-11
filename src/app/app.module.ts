@@ -26,6 +26,8 @@ import { BoxBirthdayComponent } from './component/box-birthday/box-birthday.comp
 import { AuthComponent } from './service/auth/auth.component';
 import { TokenInterceptor } from './guards/intercreptors/token.intercreptor';
 import { ProfileHeaderComponent } from './component/profile-header/profile-header.component';
+import { ShowImgPopupComponent } from './component/show-img-popup/show-img-popup.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 // import { RefreshTokenInterceptor } from './guards/intercreptors/refreshToken.intercreptor';
 
 
@@ -48,7 +50,9 @@ import { ProfileHeaderComponent } from './component/profile-header/profile-heade
     BoxWeatherComponent,
     BoxBirthdayComponent,
     AuthComponent,
-    ProfileHeaderComponent
+    ProfileHeaderComponent,
+    ShowImgPopupComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

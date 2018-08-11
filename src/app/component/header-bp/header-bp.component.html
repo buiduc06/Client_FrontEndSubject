@@ -1,9 +1,9 @@
 <!-- Header-BP -->
 
-<header class="header" id="site-header">
+<header class="header" id="site-header" *ngIf="dataUser">
 
 	<div class="page-title">
-		<h6><a href="/" title="">Newsfeed</a></h6>
+		<h6 [routerLink]="['/']" style="cursor: pointer;">Newsfeed</h6>
 	</div>
 
 	<div class="header-content-wrapper">
@@ -33,18 +33,17 @@
 				<div class="more-dropdown more-with-triangle triangle-top-center">
 					<div class="ui-block-title ui-block-title-small">
 						<h6 class="title">Lời mời kết bạn</h6>
-						<a href="#">Tìm bạn bè</a>
-						<a href="#">Cài đặt</a>
+						<a href="javascript:void(0)">Tìm bạn bè</a>
+						<a href="javascript:void(0)">Cài đặt</a>
 					</div>
-
 					<div class="mCustomScrollbar" data-mcs-theme="dark">
-						<ul class="notification-list friend-requests">
-							<li *ngFor="let itemF of dataRequestFriend">
+						<ul class="notification-list friend-requests" *ngIf="dataRequestFriend">
+							<li *ngFor="let itemF of dataRequestFriend" >
 								<div class="author-thumb">
 									<img src="{{itemF.avatar}}" alt="author">
 								</div>
 								<div class="notification-event">
-									<a href="/u/{{itemF.uid_user}}" class="h6 notification-friend">{{itemF.name}}</a>
+									<a href="javascript:void(0)" [routerLink]="['/u', itemF.uid_user]" class="h6 notification-friend">{{itemF.name}}</a>
 								</div>
 								<span class="notification-icon">
 									<a href="javascript:void(0)" class="accept-request">
@@ -70,9 +69,10 @@
 								</div>
 							</li>
 						</ul>
+						<h6 class="text-center" style="margin-top: 20px" *ngIf="dataRequestFriend.lenght==null">Không có lời mời kết bạn nào</h6>
 					</div>
 
-					<a href="#" class="view-all bg-blue">Xem tất cả lời mời</a>
+					<!-- 					<a href="#" class="view-all bg-blue">Xem tất cả lời mời</a> -->
 				</div>
 			</div>
 
@@ -150,10 +150,9 @@
 					<a href="#" class="view-all bg-primary">Xem tất cả các thông báo</a>
 				</div>
 			</div>
-
 			<div class="author-page author vcard inline-items more">
 				<div class="author-thumb">
-					<img alt="author" src="{{dataUser.avatar}}" class="avatar">
+					<img alt="author" src="{{dataUser?.avatar}}">
 					<span class="icon-status online"></span>
 					<div class="more-dropdown more-with-triangle">
 						<div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -163,20 +162,20 @@
 
 							<ul class="account-settings">
 								<li>
-									<a href="29-YourAccount-AccountSettings.html">
+									<a href="javascript:void(0)" [routerLink]="['/u', dataUser.uid_user]">
 
 										<svg class="olymp-menu-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
 
 										<span>Trang cá nhân</span>
 									</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="36-FavPage-SettingsAndCreatePopup.html">
 										<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
 
 										<span>Tạo Page cá nhân</span>
 									</a>
-								</li>
+								</li> -->
 								<li>
 									<a href="javascript:void(0)" (click)="logout()">
 										<svg class="olymp-logout-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
@@ -191,7 +190,7 @@
 								<h6 class="title">Panda CMS</h6>
 							</div>
 
-							<ul>
+						<!-- 	<ul>
 								<li>
 									<a href="#">
 										<span>FAQs</span>
@@ -202,14 +201,14 @@
 										<span>Liên hệ</span>
 									</a>
 								</li>
-							</ul>
+							</ul> -->
 						</div>
 
 					</div>
 				</div>
 				<a href="02-ProfilePage.html" class="author-name fn">
 					<div class="author-title">
-						{{dataUser.name}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+						{{dataUser?.name}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
 					</div>
 					<span class="author-subtitle">Thành viên mới</span>
 				</a>

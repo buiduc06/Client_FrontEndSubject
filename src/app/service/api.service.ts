@@ -48,6 +48,10 @@ export class ApiService {
     return this.http.post(`${this.userData}/getUserByUid`,{'uid_user':uid_user});
   }
 
+  getDataUserByUid(uid_user){
+    return this.http.post(`${this.userData}/getDataUserByUid`,{'uid_user':uid_user});
+  }
+
   doComfirmFriend(user_id){
     return this.http.post(`${this.userData}/confirmFriend`,{'user_id':user_id});
   }

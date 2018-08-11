@@ -14,10 +14,10 @@ export class TokenService {
 	handle(data){
 		this.set(data);
 	}
-
+ 
 	set(data){
 		localStorage.setItem('token', data.token);
-		localStorage.setItem('user', btoa(JSON.stringify(data.user)));
+		localStorage.setItem('user', window.btoa(unescape(encodeURIComponent(JSON.stringify(data.user)))));
 	}
 
 	get() {
@@ -59,5 +59,6 @@ export class TokenService {
 		this.iss.logout
 		this.remove();
 	}
+
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 declare var jquery:any;
 declare var $ :any;
-import { ChatService } from '../../service/chat.service';
+// import { ChatService } from '../../service/chat.service';
 
 @Component({
 	selector: 'app-windown-popup-chat',
@@ -11,20 +11,20 @@ import { ChatService } from '../../service/chat.service';
 export class WindownPopupChatComponent implements OnInit {
 	msgInput: string = 'lorem ipsum';
 	constructor(
-		private chatService: ChatService,
+		// private chatService: ChatService,
 		) { }
 
 	ngOnInit() {
-		this.chatService.onNewMessage().subscribe(msg => {
-			console.log('got a msg: ' + msg);
-		});
+		// this.chatService.onNewMessage().subscribe(msg => {
+		// 	console.log('got a msg: ' + msg);
+		// });
 	}
 
-	sendButtonClick() {
-		this.chatService.sendMessage(this.msgInput);
-	}
+	// sendButtonClick() {
+	// 	this.chatService.sendMessage(this.msgInput);
+	// }
 
-	openChat(user_id){
-		$('#chatRealtime').toggleClass('open-chat');
-	}
+	// openChat(user_id){
+	// 	$('#chatRealtime').toggleClass('open-chat');
+	// }
 }

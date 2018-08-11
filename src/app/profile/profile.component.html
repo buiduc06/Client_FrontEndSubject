@@ -1,6 +1,6 @@
  
 
-<div *ngIf="listPost">
+<div *ngIf="listPost && DataUser">
 
 	<app-sidebar-right-fixed></app-sidebar-right-fixed>
 	<app-header-bp></app-header-bp>
@@ -13,898 +13,228 @@
 			<!-- Main Content -->
 
 			<div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
-				<div id="newsfeed-items-grid">
+				<div id="newsfeed-items-grid" *ngFor="let itemPost of listPost">
 
-					<div class="ui-block" *ngFor="let itemPost of listPost">
-						<article class="hentry post">
+
+					<div class="ui-block">
+
+						<article class="hentry post has-post-thumbnail">
 
 							<div class="post__author author vcard inline-items">
 								<img src="{{itemPost.post_user_info.avatar}}" alt="author">
 
 								<div class="author-date">
-									<a class="h6 post__author-name fn" href="02-ProfilePage.html">{{itemPost.post_user_info.name}}</a>
+									<a href="javascript:void(0)" class="h6 post__author-name fn" [routerLink]="['/u', itemPost.post_user_info.uid_user]" >
+										{{itemPost.post_user_info.name}}
+									</a>
 									<div class="post__date">
-										<time class="published" datetime="2017-03-24T18:18">
-											19 hours ago
+										<time class="published" datetime="2004-07-24T18:18">
+											{{itemPost.created_at}}
 										</time>
 									</div>
 								</div>
 
-<!--  							<div class="more">
- 								<svg class="olymp-three-dots-icon">
- 									<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
- 								</svg>
- 								<ul class="more-dropdown">
- 									<li>
- 										<a href="#">Edit Post</a>
- 									</li>
- 									<li>
- 										<a href="#">Delete Post</a>
- 									</li>
- 									<li>
- 										<a href="#">Turn Off Notifications</a>
- 									</li>
- 									<li>
- 										<a href="#">Select as Featured</a>
- 									</li>
- 								</ul>
- 							</div> -->
-
- 						</div>
-
- 						<p>
- 							{{itemPost.content}}
- 						</p>
-
- 						<div class="post-additional-info inline-items">
-
- 							<a href="#" class="post-add-icon inline-items">
- 								<svg class="olymp-heart-icon">
- 									<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
- 								</svg>
- 								<span>{{itemPost.action_with_post.awp_like}}</span>
- 							</a>
-
- 							<ul class="friends-harmonic">
- 								<li>
- 									<a href="#">
- 										<img src="assets/img/friend-harmonic7.jpg" alt="friend">
- 									</a>
- 								</li>
- 								<li>
- 									<a href="#">
- 										<img src="assets/img/friend-harmonic8.jpg" alt="friend">
- 									</a>
- 								</li>
- 								<li>
- 									<a href="#">
- 										<img src="assets/img/friend-harmonic9.jpg" alt="friend">
- 									</a>
- 								</li>
- 								<li>
- 									<a href="#">
- 										<img src="assets/img/friend-harmonic10.jpg" alt="friend">
- 									</a>
- 								</li>
- 								<li>
- 									<a href="#">
- 										<img src="assets/img/friend-harmonic11.jpg" alt="friend">
- 									</a>
- 								</li>
- 							</ul>
-
- 							<div class="names-people-likes">
- 								<a href="#">Jenny</a>, <a href="#">Robert</a> and
- 								<br>6 more liked this
- 							</div>
-
-
- 							<div class="comments-shared">
- 								<a href="#" class="post-add-icon inline-items">
- 									<svg class="olymp-speech-balloon-icon">
- 										<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
- 									</svg>
- 									<span>{{itemPost.action_with_post.awp_comment}}</span>
- 								</a>
-
- 								<a href="#" class="post-add-icon inline-items">
- 									<svg class="olymp-share-icon">
- 										<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-share-icon"></use>
- 									</svg>
- 									<span>{{itemPost.action_with_post.awp_share}}</span>
- 								</a>
- 							</div>
-
-
- 						</div>
-
- 						
-
- 					</article>			
- 				</div>
-
- 			</div>
- 		</div>
-
- 		<!-- ... end Main Content -->
-
-
- 		<!-- Left Sidebar -->
-
- 		<div class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
-
- 			<div class="ui-block">
- 				<div class="ui-block-title">
- 					<h6 class="title">Thông Tin Cá nhân</h6>
- 				</div>
- 				<div class="ui-block-content">
-
- 					<!-- W-Personal-Info -->
-
- 					<ul class="widget w-personal-info item-block">
- 						<li>
- 							<span class="title">About Me:</span>
- 							<span class="text">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56.</span>
- 						</li>
- 						<li>
- 							<span class="title">Favourite TV Shows:</span>
- 							<span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
- 						</li>
- 						<li>
- 							<span class="title">Favourite Music Bands / Artists:</span>
- 							<span class="text">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</span>
- 						</li>
- 					</ul>
-
- 					<!-- .. end W-Personal-Info -->
- 					<!-- W-Socials -->
-
- 					<div class="widget w-socials">
- 						<h6 class="title">Kết nối với tôi:</h6>
- 						<a href="#" class="social-item bg-facebook">
- 							<i class="fab fa-facebook-f" aria-hidden="true"></i>
- 							Facebook
- 						</a>
- 						<a href="#" class="social-item bg-twitter">
- 							<i class="fab fa-twitter" aria-hidden="true"></i>
- 							Twitter
- 						</a>
- 						<a href="#" class="social-item bg-dribbble">
- 							<i class="fab fa-dribbble" aria-hidden="true"></i>
- 							Dribbble
- 						</a>
- 					</div>
-
-
- 					<!-- ... end W-Socials -->
- 				</div>
- 			</div>
-
-
-
- 			<div class="ui-block">
- 				<div class="ui-block-title">
- 					<h6 class="title">Last Videos</h6>
- 				</div>
- 				<div class="ui-block-content">
-
- 					<!-- W-Latest-Video -->
-
- 					<ul class="widget w-last-video">
- 						<li>
- 							<a href="https://vimeo.com/ondemand/viewfromabluemoon4k/147865858" class="play-video play-video--small">
- 								<svg class="olymp-play-icon">
- 									<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-play-icon"></use>
- 								</svg>
- 							</a>
- 							<img src="assets/img/video8.jpg" alt="video">
- 							<div class="video-content">
- 								<div class="title">System of a Revenge - Hypnotize...</div>
- 								<time class="published" datetime="2017-03-24T18:18">3:25</time>
- 							</div>
- 							<div class="overlay"></div>
- 						</li>
- 						<li>
- 							<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video play-video--small">
- 								<svg class="olymp-play-icon">
- 									<use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-play-icon"></use>
- 								</svg>
- 							</a>
- 							<img src="assets/img/video7.jpg" alt="video">
- 							<div class="video-content">
- 								<div class="title">Green Goo - Live at Dan’s Arena</div>
- 								<time class="published" datetime="2017-03-24T18:18">5:48</time>
- 							</div>
- 							<div class="overlay"></div>
- 						</li>
- 					</ul>
-
- 					<!-- .. end W-Latest-Video -->
- 				</div>
- 			</div>
-
- 		</div>
-
- 		<!-- ... end Left Sidebar -->
-
-
- 		<!-- Right Sidebar -->
-
- 		<div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
-
- 			<div class="ui-block">
- 				<div class="ui-block-title">
- 					<h6 class="title">Hỉnh ảnh </h6>
- 				</div>
- 				<div class="ui-block-content">
-
- 					<!-- W-Latest-Photo -->
-
- 					<ul class="widget w-last-photo js-zoom-gallery">
- 						<li>
- 							<a href="assets/img/last-photo10-large.jpg">
- 								<img src="assets/img/last-photo10-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot11-large.jpg">
- 								<img src="assets/img/last-phot11-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot12-large.jpg">
- 								<img src="assets/img/last-phot12-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot13-large.jpg">
- 								<img src="assets/img/last-phot13-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot14-large.jpg">
- 								<img src="assets/img/last-phot14-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot15-large.jpg">
- 								<img src="assets/img/last-phot15-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot16-large.jpg">
- 								<img src="assets/img/last-phot16-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot17-large.jpg">
- 								<img src="assets/img/last-phot17-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="assets/img/last-phot18-large.jpg">
- 								<img src="assets/img/last-phot18-large.jpg" alt="photo">
- 							</a>
- 						</li>
- 					</ul>
-
-
- 					<!-- .. end W-Latest-Photo -->
- 				</div>
- 			</div>
-
- 		 
-
- 			<div class="ui-block">
- 				<div class="ui-block-title">
- 					<h6 class="title">Bạn bè (0)</h6>
- 				</div>
- 				<div class="ui-block-content">
-
- 					<!-- W-Faved-Page -->
-
- 					<ul class="widget w-faved-page js-zoom-gallery">
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar38-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar24-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar36-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar35-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar34-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar33-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar32-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar31-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar30-sm.jpg" alt="author">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar29-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar28-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar27-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar26-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li>
- 							<a href="#">
- 								<img src="assets/img/avatar25-sm.jpg" alt="user">
- 							</a>
- 						</li>
- 						<li class="all-users">
- 							<a href="#">+74</a>
- 						</li>
- 					</ul>
-
- 					<!-- .. end W-Faved-Page -->
- 				</div>
- 			</div>
- 		</div>
-
- 		<!-- ... end Right Sidebar -->
-
- 	</div>
- </div>
-
- <!-- Window-popup Update Header Photo -->
-
- <div class="modal fade" id="update-header-photo" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
- 	<div class="modal-dialog window-popup update-header-photo" role="document">
- 		<div class="modal-content">
- 			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
- 				<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 			</a>
-
- 			<div class="modal-header">
- 				<h6 class="title">Update Header Photo</h6>
- 			</div>
-
- 			<div class="modal-body">
- 				<a href="#" class="upload-photo-item">
- 					<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
-
- 					<h6>Upload Photo</h6>
- 					<span>Browse your computer.</span>
- 				</a>
-
- 				<a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
-
- 					<svg class="olymp-photos-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
-
- 					<h6>Choose from My Photos</h6>
- 					<span>Choose from your uploaded photos</span>
- 				</a>
- 			</div>
- 		</div>
- 	</div>
- </div>
-
-
- <!-- ... end Window-popup Update Header Photo -->
-
- <!-- Window-popup Choose from my Photo -->
-
- <div class="modal fade" id="choose-from-my-photo" tabindex="-1" role="dialog" aria-labelledby="choose-from-my-photo" aria-hidden="true">
- 	<div class="modal-dialog window-popup choose-from-my-photo" role="document">
-
- 		<div class="modal-content">
- 			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
- 				<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 			</a>
- 			<div class="modal-header">
- 				<h6 class="title">Choose from My Photos</h6>
-
- 				<!-- Nav tabs -->
- 				<ul class="nav nav-tabs" role="tablist">
- 					<li class="nav-item">
- 						<a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
- 							<svg class="olymp-photos-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
- 						</a>
- 					</li>
- 					<li class="nav-item">
- 						<a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
- 							<svg class="olymp-albums-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-albums-icon"></use></svg>
- 						</a>
- 					</li>
- 				</ul>
- 			</div>
-
- 			<div class="modal-body">
- 				<!-- Tab panes -->
- 				<div class="tab-content">
- 					<div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
-
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo1.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo2.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo3.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
-
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo4.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo5.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo6.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
-
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo7.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo8.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<div class="radio">
- 								<label class="custom-radio">
- 									<img src="assets/img/choose-photo9.jpg" alt="photo">
- 									<input type="radio" name="optionsRadios">
- 								</label>
- 							</div>
- 						</div>
-
-
- 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
- 						<a href="#" class="btn btn-primary btn-lg btn--half-width">Confirm Photo</a>
-
- 					</div>
- 					<div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
-
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo10.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">South America Vacations</a>
- 									<span>Last Added: 2 hours ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo11.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">Photoshoot Summer 2016</a>
- 									<span>Last Added: 5 weeks ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo12.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">Amazing Street Food</a>
- 									<span>Last Added: 6 mins ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
-
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo13.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">Graffity & Street Art</a>
- 									<span>Last Added: 16 hours ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo14.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">Amazing Landscapes</a>
- 									<span>Last Added: 13 mins ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
- 						<div class="choose-photo-item" data-mh="choose-item">
- 							<figure>
- 								<img src="assets/img/choose-photo15.jpg" alt="photo">
- 								<figcaption>
- 									<a href="#">The Majestic Canyon</a>
- 									<span>Last Added: 57 mins ago</span>
- 								</figcaption>
- 							</figure>
- 						</div>
-
-
- 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
- 						<a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Confirm Photo</a>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
-
- 	</div>
- </div>
-
- <!-- ... end Window-popup Choose from my Photo -->
-
- <!-- Playlist Popup -->
-
- <div class="window-popup playlist-popup" tabindex="-1" role="dialog" aria-labelledby="playlist-popup" aria-hidden="true">
-
- 	<a href="#" class="icon-close js-close-popup">
- 		<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 	</a>
-
- 	<table class="playlist-popup-table">
-
- 		<thead>
-
- 			<tr>
-
- 				<th class="play">
- 					PLAY
- 				</th>
-
- 				<th class="cover">
- 					COVER
- 				</th>
-
- 				<th class="song-artist">
- 					SONG AND ARTIST
- 				</th>
-
- 				<th class="album">
- 					ALBUM
- 				</th>
-
- 				<th class="released">
- 					RELEASED
- 				</th>
-
- 				<th class="duration">
- 					DURATION
- 				</th>
-
- 				<th class="spotify">
- 					GET IT ON SPOTIFY
- 				</th>
-
- 				<th class="remove">
- 					REMOVE
- 				</th>
- 			</tr>
-
- 		</thead>
-
- 		<tbody>
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist19.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">We Can Be Heroes</a>
- 						<a href="#" class="composition-author">Jason Bowie</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition">Ziggy Firedust</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
-
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist6.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">The Past Starts Slow and Ends</a>
- 						<a href="#" class="composition-author">System of a Revenge</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition">Wonderize</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
-
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist7.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">The Pretender</a>
- 						<a href="#" class="composition-author">Kung Fighters</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition">Warping Lights</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
-
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist8.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">Seven Nation Army</a>
- 						<a href="#" class="composition-author">The Black Stripes</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition ">Icky Strung (LIVE at Cube Garden)</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
-
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist9.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">Leap of Faith</a>
- 						<a href="#" class="composition-author">Eden Artifact</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition">The Assassins’s Soundtrack</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
-
- 			<tr>
- 				<td class="play">
- 					<a href="#" class="play-icon">
- 						<svg class="olymp-music-play-icon-big"><use xlink:href="assets/svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use></svg>
- 					</a>
- 				</td>
- 				<td class="cover">
- 					<div class="playlist-thumb">
- 						<img src="assets/img/playlist10.jpg" alt="thumb-composition">
- 					</div>
- 				</td>
- 				<td class="song-artist">
- 					<div class="composition">
- 						<a href="#" class="composition-name">Killer Queen</a>
- 						<a href="#" class="composition-author">Archiduke</a>
- 					</div>
- 				</td>
- 				<td class="album">
- 					<a href="#" class="album-composition ">News of the Universe</a>
- 				</td>
- 				<td class="released">
- 					<div class="release-year">2014</div>
- 				</td>
- 				<td class="duration">
- 					<div class="composition-time">
- 						<time class="published" datetime="2017-03-24T18:18">6:17</time>
- 					</div>
- 				</td>
- 				<td class="spotify">
- 					<i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
- 				</td>
- 				<td class="remove">
- 					<a href="#" class="remove-icon">
- 						<svg class="olymp-close-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
- 					</a>
- 				</td>
- 			</tr>
- 		</tbody>
- 	</table>
-
- 	<audio id="mediaplayer" data-showplaylist="true">
- 		<source src="assets/mp3/Twice.mp3" title="Track 1" data-poster="track1.png" type="audio/mpeg">
- 			<source src="assets/mp3/Twice.mp3" title="Track 2" data-poster="track2.png" type="audio/mpeg">
- 				<source src="assets/mp3/Twice.mp3" title="Track 3" data-poster="track3.png" type="audio/mpeg">
- 					<source src="assets/mp3/Twice.mp3" title="Track 4" data-poster="track4.png" type="audio/mpeg">
- 					</audio>
-
- 				</div>
-
- 				<!-- ... end Playlist Popup -->
-
-
- 				<a class="back-to-top" href="#">
- 					<img src="assets/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
- 				</a>
-
-
- 				<app-windown-popup-chat></app-windown-popup-chat>
-
- 			</div>
+								<div class="more" *ngIf="itemPost.isMyPost">
+									<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+									<ul class="more-dropdown">
+										<li>
+											<a href="javascript:void(0)" (click)="editMyPost(itemPost.post_id)">Sửa bài viết </a>
+										</li>
+										<li>
+											<a href="javascript:void(0)" (click)="deletePost(itemPost.post_id)">Xóa bài viết</a>
+										</li>
+									</ul>
+								</div> 
+							</div>
+
+							<p>{{itemPost.content}}
+							</p>
+
+							<div class="post-thumb" *ngIf="itemPost.listImage">
+								<img *ngFor="let itemImg of itemPost.listImage" (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+							</div>
+
+							<div class="post-additional-info inline-items" >
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'like')" class="post-add-icon inline-items" [style.color] = "itemPost.action_with_post.isMyLiked == true ? '#ff5e3a' : '#9a9fbf'">
+									<svg class="olymp-heart-icon" [style.fill] = "itemPost.action_with_post.isMyLiked == true ? '#ff5e3a' : '#9a9fbf'" ><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+									<span>{{itemPost.action_with_post.awp_like}} Likes</span>
+								</a>
+
+								<div class="comments-shared" >
+									<a href="javascript:void(0)" class="post-add-icon inline-items" (click)="toggleComment(itemPost.post_id)">
+										<svg class="olymp-speech-balloon-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
+										<span>{{itemPost.action_with_post.awp_comment}} Comments</span>
+									</a>
+								</div>
+							</div>
+
+							<div class="control-block-button post-control-button">
+
+								<a href="javascript:void(0)" (click)="updateActionStatus(itemPost.post_id,'like')" class="btn btn-control" [style.background-color] = "itemPost.action_with_post.isMyLiked == true ? '#ff5e3a' : '#9a9fbf'">
+									<svg class="olymp-like-post-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-like-post-icon"></use></svg>
+								</a>
+
+								<a href="javascript:void(0)"  class="btn btn-control" (click)="toggleComment(itemPost.post_id)">
+									<svg class="olymp-comments-post-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+								</a>
+							</div>
+
+						</article>
+
+						<!-- Comments -->
+						<div id="show_list_comment_{{itemPost.post_id}}" style="display: none"> 
+							<ul class="comments-list style-2" *ngIf="itemPost.listcomment">
+								<li class="comment-item" *ngFor="let itemComment of itemPost.listcomment">
+									<div class="post__author author vcard">
+										<img src="{{itemComment.user_data.avatar}}" alt="author">
+
+										<div class="author-date">
+											<p><a class="h6 post__author-name fn" [routerLink]="['/u', itemComment.user_data.uid_user]" href="javascript:void(0)">{{itemComment.user_data.name}}</a> {{itemComment.content}}</p>
+										</div>
+
+									</div>
+								</li>
+							</ul>
+							<!-- ... end Comments -->
+							<a href="javascript:void(0)" class="more-comments" *ngIf="itemPost.listcomment" (click)="getMoreComment()">
+								<i class="fa fa-spinner fa-spin" style="display: none"></i>
+								Xem thêm bình luận <span></span>
+							</a>
+
+							<form class="comment-form inline-items" #loginForm=ngForm (ngSubmit)="pushCommentStatus(itemPost.post_id)">
+
+								<div class="post__author author vcard inline-items">
+									<img src="{{myInfo?.avatar}}" alt="author">
+									<div class="form-group with-icon-right ">
+										<textarea class="form-control box_comment_d" 
+										(change)="changeCommentTextera($event)"  
+										></textarea>
+										
+									</div>
+								</div>
+								<button class="btn btn-md-2 btn-primary">Đăng bình luận</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="timeline-wrapper" *ngIf="issetData">
+				<div class="timeline-item">
+					<div class="animated-background">
+						<div class="background-masker header-top"></div>
+						<div class="background-masker header-left"></div>
+						<div class="background-masker header-right"></div>
+						<div class="background-masker header-bottom"></div>
+						<div class="background-masker subheader-left"></div>
+						<div class="background-masker subheader-right"></div>
+						<div class="background-masker subheader-bottom"></div>
+						<div class="background-masker content-top"></div>
+						<div class="background-masker content-first-end"></div>
+						<div class="background-masker content-second-line"></div>
+						<div class="background-masker content-second-end"></div>
+						<div class="background-masker content-third-line"></div>
+						<div class="background-masker content-third-end"></div>
+					</div>
+				</div>
+			</div>
+			<h4 *ngIf="!issetData" class="text-center">Dữ liệu đã hết</h4>
+			</div>
+
+			<!-- ... end Main Content -->
+
+
+			<!-- Left Sidebar -->
+
+			<div class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
+
+				<div class="ui-block">
+					<div class="ui-block-title">
+						<h6 class="title">Thông Tin Cá nhân</h6>
+					</div>
+					<div class="ui-block-content">
+
+						<!-- W-Personal-Info -->
+
+						<ul class="widget w-personal-info item-block">
+							<li>
+								<span class="title">About Me:</span>
+								<span class="text">{{DataUser.metaUser.description}}</span>
+							</li>
+						</ul>
+
+						<!-- .. end W-Personal-Info -->
+					</div>
+				</div>
+			</div>
+
+			<!-- ... end Left Sidebar -->
+
+
+			<!-- Right Sidebar -->
+
+			<div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
+
+				<div class="ui-block">
+					<div class="ui-block-title">
+						<h6 class="title">Hình ảnh </h6>
+					</div>
+					<div class="ui-block-content">
+
+						<!-- W-Latest-Photo -->
+
+						<ul class="widget w-last-photo js-zoom-gallery" *ngIf="DataUser?.listImgUpload">
+							<li *ngFor="let itemImg of DataUser.listImgUpload">
+								<a href="{{itemImg}}">
+									<img src="{{itemImg}}" alt="photo">
+								</a>
+							</li>
+						</ul>
+
+
+						<!-- .. end W-Latest-Photo -->
+					</div>
+				</div>
+
+
+
+				<div class="ui-block">
+					<div class="ui-block-title">
+						<h6 class="title">Bạn bè ({{countFriends}})</h6>
+					</div>
+					<div class="ui-block-content">
+
+						<!-- W-Faved-Page -->
+
+						<ul class="widget w-faved-page js-zoom-gallery">
+							<li *ngFor="let itemFriends of DataUser?.listFriends">
+								<a [routerLink]="['/u', itemFriends.uid_user]" href="javascript:void(0)">
+									<img src="{{itemFriends.avatar}}" alt="{{itemFriends.name}}" title="{{itemFriends.name}}">
+								</a>
+							</li>
+						<!-- 	<li class="all-users">
+								<a href="#">+74</a>
+							</li> -->
+						</ul>
+
+						<!-- .. end W-Faved-Page -->
+					</div>
+				</div>
+			</div>
+
+			<!-- ... end Right Sidebar -->
+
+		</div>
+	</div>
+
+
+	<a class="back-to-top" (click)="backToTop()">
+		<img src="assets/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+	</a>
+
+
+
+	<app-windown-popup-chat></app-windown-popup-chat>
+
+</div>
+ 

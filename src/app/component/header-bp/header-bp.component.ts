@@ -24,7 +24,7 @@ export class HeaderBpComponent implements OnInit {
 
   public dataUser;
   public dataRequestFriend;
-  public lenghtRQfriends = 0;
+  public lenghtRQfriends:number;
   public sUserName ={
     user_name:null
   };
@@ -40,12 +40,16 @@ export class HeaderBpComponent implements OnInit {
     this.ApiService.getRequestFriend().subscribe(
       data=>{
         this.dataRequestFriend = data;
-           // console.log(this.dataRequestFriend.length = this.lenghtRQfriends);
-           this.lenghtRQfriends = this.dataRequestFriend.length;
-         },Error=>{
-           console.log(Error);
-         }
-         );
+        if (data >0) {
+          this.lenghtRQfriends = this.dataRequestFriend.length;
+        }else{
+           this.lenghtRQfriends = 0;
+        }
+
+      },Error=>{
+        console.log(Error);
+      }
+      );
 
 
   	// console.log(this.ApiService.getInfoUser());
@@ -62,6 +66,9 @@ export class HeaderBpComponent implements OnInit {
     var ckUnit ='';
     $('#Appent-friends').empty();
     $('#Appent-friends').show();
+    $('.notification-list').mouseleave(function(event) {
+      $('#Appent-friends').hide();
+    });
     this.ApiService.searchUser({user_name:e.target.value}).subscribe(
       data=>{
         $.each( data, function( key, value ) {
@@ -82,11 +89,9 @@ export class HeaderBpComponent implements OnInit {
           </div>
           </a>
           `;
-
-
         });
-        $('#Appent-friends').append(ckUnit).show('fast');
-        
+        $('#Appent-friends').empty();
+        $('#Appent-friends').append(ckUnit).show();
       },Error=>{
         console.log(Error);
       }
@@ -107,7 +112,7 @@ export class HeaderBpComponent implements OnInit {
   }
   miunusFriends(user_id2){
 
-     this.ApiService.miunusFriends({user_id:user_id2}).subscribe(
+    this.ApiService.miunusFriends({user_id:user_id2}).subscribe(
       data=>{
         var findIndex = this.functions.findIndexInObjectById(this.dataRequestFriend, user_id2);
         this.dataRequestFriend.splice([findIndex], 1);

@@ -19,7 +19,6 @@ declare var $ :any;
 export class NewsFeedComponent implements OnInit {
 	public myInfo;
 
-
 	constructor(
 		private NewsFeed: NewsfeedService,
 		private router: Router,
@@ -27,12 +26,7 @@ export class NewsFeedComponent implements OnInit {
 		private functions: FunctionService,
 		private Api: ApiService,
 		private http: HttpClient
-		) {
-
-		// lấy thông tin của user
-		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
-		console.log(this.myInfo);
-	}
+		) {}
 	public listPost;
 	public error:null;
 	public user_id;
@@ -62,6 +56,8 @@ export class NewsFeedComponent implements OnInit {
 	FileTest:File;
 	sizeObject:number;
 	ngOnInit() {
+		// lay thong tin user
+		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
 	//lấy data
 	this.NewsFeed.getNewsFeed().subscribe(
 		data => this.getData(data),
@@ -79,7 +75,6 @@ export class NewsFeedComponent implements OnInit {
 }
 
 postNewsFeed(){
-
 	this.NewsFeed.postNewsFeed(this.postNews).subscribe(
 		maindata => {
 			if (this.FileTest !=null) {
@@ -99,11 +94,8 @@ postNewsFeed(){
 				$('.show_img_beforeupload').empty();
 				$('#clean_inp').val('');
 				$('#img_pop_upload').empty();
-
 				this.listPost.unshift(maindata);
 			}
-
-
 		},Error => {
 			alert("tạo bài viết thất bại");
 		});
@@ -167,9 +159,6 @@ getMorePost(){
 		}
 		);
 }
-
-
-
 
 handleError(error){
 	this.error = error.error.error;
@@ -244,6 +233,7 @@ getMoreComment(){
 editMyPost(post_id){
 	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
 	this.editPost.post_id = post_id;
+	this.editPost.content = this.listPost[idObject2].content;
 	$('#clean_inp2').val(this.listPost[idObject2].content);
 	$('#modal-edit-post').modal('show');
 }
@@ -252,9 +242,10 @@ postEditMyPost(){
 	var post_id = this.editPost.post_id;
 	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
 	this.listPost[idObject2].content = this.editPost.content;
-	console.log(post_id);
+	// console.log(post_id);
+	
 	this.NewsFeed.updatePost(this.editPost).subscribe(data=>{
-		console.log(data);
+		// console.log(data);
 	},Error=>{
 		console.log('cập nhật bài viết bị lỗi');
 	}
@@ -262,4 +253,12 @@ postEditMyPost(){
 	
 	$('#modal-edit-post').modal('hide');
 }
+
+openImg(link){
+	// window.location.href = link;
+	$('#change_img_ch').attr('src', link);
+	$('#show_img').modal('show');
+}
+
+
 }

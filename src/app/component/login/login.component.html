@@ -1,5 +1,15 @@
+<div class="pd_loading">
+	<div>
+		<div class="c1"></div>
+		<div class="c2"></div>
+		<div class="c3"></div>
+		<div class="c4"></div>
+	</div>
+	<span>loading</span>
+</div>
+
 <div class="landing-page">
-	
+
 
 	<div class="content-bg-wrap"></div>
 
@@ -161,11 +171,11 @@
 											class="form-control" 
 											#datetimepicker="ngModel" 
 											[(ngModel)]="form.datetimepicker"
-											 >
+											>
 											<span class="input-group-addon">
 												<svg class="olymp-calendar-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
 											</span>
-										
+
 										</div>
 
 										<div class="form-group label-floating is-select">
@@ -193,7 +203,7 @@
 							</div>
 						</form>
 					</div>
- 
+
 					<div class="tab-pane active" id="profile" role="tabpanel" data-mh="log-tab">
 						<div class="title h6">Đăng nhập với tài khoản của bạn</div>
 						<form #loginForm=ngForm class="content" (ngSubmit)="onLogin()" >
@@ -208,36 +218,36 @@
 										<input class="form-control" [(ngModel)]="form.password" name="password" id="password" type="password">
 									</div>
 
-									<div class="remember">
+<!-- 	<div class="remember">
 
-										<div class="checkbox">
-											<label>
-												<input name="optionsCheckboxes" type="checkbox">
-												Ghi nhớ
-											</label>
-										</div>
-										<a href="#" class="forgot">Quên mật khẩu</a>
-									</div>
+<div class="checkbox">
+<label>
+<input name="optionsCheckboxes" type="checkbox">
+Ghi nhớ
+</label>
+</div>
+<a href="#" class="forgot">Quên mật khẩu</a>
+</div> -->
 
-									<button type="submit" class="btn btn-lg btn-primary full-width">Đăng nhập</button>
+<button type="submit" class="btn btn-lg btn-primary full-width">Đăng nhập</button>
 
-									<div class="or"></div>
+<div class="or"></div>
+<!-- 
+<a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fab fa-facebook-f" aria-hidden="true"></i>Đăng nhập với facebook</a>
 
-									<a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fab fa-facebook-f" aria-hidden="true"></i>Đăng nhập với facebook</a>
+<a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Đăng nhập với Twitter</a>
+-->
 
-									<a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Đăng nhập với Twitter</a>
+<p>Bạn chưa có tài khoản? <a href="#">Đăng kí ngay!</a> nó thật đơn giản để bắt đầu việc học tập của bạn!</p>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
 
-
-									<p>Bạn chưa có tài khoản? <a href="#">Đăng kí ngay!</a> nó thật đơn giản để bắt đầu việc học tập của bạn!</p>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<!-- ... end Login-Registration Form  -->		
-		</div>
-	</div>
+<!-- ... end Login-Registration Form  -->		
+</div>
+</div>
 </div>
 </div>

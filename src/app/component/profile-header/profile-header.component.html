@@ -1,86 +1,146 @@
+
 <!-- Top Header-Profile -->
-
-<div class="container">
-	<div class="row">
-		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-			<div class="ui-block">
-				<div class="top-header">
-					<div class="top-header-thumb">
-						<img src="assets/img/top-header1.jpg" alt="nature">
-					</div>
-					<div class="profile-section">
-						<div class="row">
-							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
-								<ul class="profile-menu">
-									<li>
-										<a href="javascript:;" [routerLink]="['/u', DataUser.uid_user]" class="active">Dòng Thời Gian</a>
-									</li>
-									<li>
-										<a href="05-ProfilePage-About.html">Thông Tin</a>
-									</li>
-									<li>
-										<a href="06-ProfilePage.html">Bạn Bè</a>
-									</li>
-								</ul>
+<div *ngIf="DataUser">
+	<div class="container" [hidden]="!isMydata">
+		<div class="row">
+			<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="ui-block">
+					<div class="top-header">
+						<div class="top-header-thumb">
+							<img src="assets/img/top-header1.jpg" alt="nature">
+						</div>
+						<div class="profile-section">
+							<div class="row">
+								<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+									<ul class="profile-menu">
+										<li>
+											<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="active">Dòng Thời Gian</a>
+										</li>
+										<li>
+											<a href="05-ProfilePage-About.html">Thông Tin</a>
+										</li>
+										<li>
+											<a href="06-ProfilePage.html">Bạn Bè</a>
+										</li>
+									</ul>
+								</div>
+								<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+									<ul class="profile-menu">
+										<li>
+											<a href="07-ProfilePage-Photos.html">Hình Ảnh</a>
+										</li>
+										<li>
+											<a href="09-ProfilePage-Videos.html">Videos</a>
+										</li>
+										<li>
+											<div class="more">
+												<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+												<ul class="more-dropdown more-with-triangle">
+													<li>
+														<a href="#">Báo cáo người dùng này</a>
+													</li>
+													<li>
+														<a href="#">Chặn người này</a>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
 							</div>
-							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
-								<ul class="profile-menu">
-									<li>
-										<a href="07-ProfilePage-Photos.html">Hình Ảnh</a>
-									</li>
-									<li>
-										<a href="09-ProfilePage-Videos.html">Videos</a>
-									</li>
-									<li>
-										<div class="more">
-											<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-											<ul class="more-dropdown more-with-triangle">
-												<li>
-													<a href="#">Báo cáo người dùng này</a>
-												</li>
-												<li>
-													<a href="#">Chặn người này</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-								</ul>
+
+							<div class="control-block-button">
+								<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
+									<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+								</a>
+
+								<a href="#" class="btn btn-control bg-purple">
+									<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+								</a>
+
+								<div class="btn btn-control bg-primary more">
+									<svg class="olymp-settings-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
+
+									<ul class="more-dropdown more-with-triangle triangle-bottom-right">
+										<li>
+											<a href="#" data-toggle="modal" data-target="#update-header-photo">Cập nhật ảnh đại diện</a>
+										</li>
+										<li>
+											<a href="#" data-toggle="modal" data-target="#update-header-photo">Cập nhật ảnh bìa</a>
+										</li>
+										<li>
+											<a href="29-YourAccount-AccountSettings.html">Cài đặt tài khoản</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-
-						<div class="control-block-button">
-							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
-								<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+						<div class="top-header-author">
+							<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="author-thumb">
+								<img src="{{DataUser?.avatar}}" alt="author">
 							</a>
-
-							<a href="#" class="btn btn-control bg-purple">
-								<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-							</a>
-
-							<div class="btn btn-control bg-primary more">
-								<svg class="olymp-settings-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
-
-								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
-									<li>
-										<a href="#" data-toggle="modal" data-target="#update-header-photo">Cập nhật ảnh đại diện</a>
-									</li>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#update-header-photo">Cập nhật ảnh bìa</a>
-									</li>
-									<li>
-										<a href="29-YourAccount-AccountSettings.html">Cài đặt tài khoản</a>
-									</li>
-								</ul>
+							<div class="author-content">
+								<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="h4 author-name">{{DataUser?.name}}</a>
+								<div class="country">Hà Nội</div>
 							</div>
 						</div>
 					</div>
-					<div class="top-header-author">
-						<a href="javascript:;" [routerLink]="['/u', DataUser.uid_user]" class="author-thumb">
-							<img src="{{DataUser.avatar}}" alt="author">
-						</a>
-						<div class="author-content">
-							<a href="javascript:;" [routerLink]="['/u', DataUser.uid_user]" class="h4 author-name">{{DataUser.name}}</a>
-							<div class="country">Hà Nội</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container" [hidden]="isMydata">
+		<div class="row">
+			<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="ui-block">
+					<div class="top-header top-header-favorit">
+						<div class="top-header-thumb">
+							<img src="assets/img/top-header2.jpg" alt="nature">
+							<div class="top-header-author">
+								<div class="author-thumb">
+									<img src="{{DataUser.avatar}}" alt="author" (click)="openImg(DataUser.avatar)">
+								</div>
+								<div class="author-content">
+									<a href="javascript:void(0)" class="h3 author-name">{{DataUser.name | lowercase }}</a>
+									<div class="country">Hà Nội</div>
+								</div>
+							</div>
+						</div>
+						<div class="profile-section">
+							<div class="row">
+								<div class="col col-xl-8 m-auto col-lg-8 col-md-12">
+									<ul class="profile-menu">
+										<li>
+											<a href="javascript:void(0)" class="active">Dòng thời gian</a>
+										</li>
+										<li>
+											<a href="13-FavouritePage-About.html">Thông tin cá nhân</a>
+										</li>
+										<li>
+											<a href="07-ProfilePage-Photos.html">Ảnh</a>
+										</li>
+										<li>
+											<a href="09-ProfilePage-Videos.html">Bạn bè</a>
+										</li>
+										<li>
+											<a href="15-FavouritePage-Events.html">Sự kiện</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="control-block-button">
+								<a href="javascript:void(0)" class="btn btn-control bg-primary" title="Hủy kết bạn">
+									<svg class="olymp-star-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+								</a>
+
+								<a href="javascript:void(0)" class="btn btn-control bg-purple" title="Gửi tin nhắn">
+									<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+								</a>
+
+							</div>
 						</div>
 					</div>
 				</div>
@@ -88,3 +148,5 @@
 		</div>
 	</div>
 </div>
+
+<app-show-img-popup></app-show-img-popup>

@@ -8,13 +8,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
 	<script src="assets/js/webfontloader.min.js"></script>
-    <script>
-        WebFont.load({
-            google: {
-                families: ['Roboto:300,400,500,700:latin']
-            }
-        });
-    </script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/Bootstrap/dist/css/bootstrap-reboot.css">
@@ -24,12 +24,57 @@
 	<!-- Main Styles CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/main.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/fonts.min.css">
+	<style type="text/css" media="screen">
+	.panda_loading {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.panda_loading-bar {
+		display: inline-block;
+		width: 8px;
+		height: 30px;
+		border-radius: 4px;
+		animation: loading 1s ease-in-out infinite;
+	}
+	.panda_loading-bar:nth-child(1) {
+		background-color: #3498db;
+		animation-delay: 0;
+	}
+	.panda_loading-bar:nth-child(2) {
+		background-color: #c0392b;
+		animation-delay: 0.09s;
+	}
+	.panda_loading-bar:nth-child(3) {
+		background-color: #f1c40f;
+		animation-delay: .18s;
+	}
+	.panda_loading-bar:nth-child(4) {
+		background-color: #27ae60;
+		animation-delay: .27s;
+	}
 
+	@keyframes loading {
+		0% {
+			transform: scale(1);
+		}
+		20% {
+			transform: scale(1, 2.2);
+		}
+		40% {
+			transform: scale(1);
+		}
+	}
+</style>
 </head>
 <body>
+	<div class="panda_loading">
+		<div class="panda_loading-bar"></div>
+		<div class="panda_loading-bar"></div>
+		<div class="panda_loading-bar"></div>
+		<div class="panda_loading-bar"></div>
+	</div>
 	<app-root></app-root>
-
-
 	<script src="assets/js/jquery-3.2.1.js"></script>
 	<script src="assets/js/jquery.appear.js"></script>
 	<script src="assets/js/jquery.mousewheel.js"></script>
@@ -69,5 +114,12 @@
 	<script defer src="assets/fonts/fontawesome-all.js"></script>
 
 	<script src="assets/Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+	<script>
+		window.onload = function()
+		{
+			$('.loading').hide();
+		};
+	</script>
 </body>
 </html>
