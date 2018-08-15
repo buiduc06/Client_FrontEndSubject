@@ -1,0 +1,108 @@
+<div class="ui-block">
+	<div class="ui-block-title">
+		<h6 class="title">Chỉnh sửa thông tin cá nhân</h6>
+	</div>
+	<div class="ui-block-content">
+		<!-- Personal Information Form  -->
+
+		<form #loginForm=ngForm (ngSubmit)="changeInfo()">
+			<div class="row">
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+					<div class="form-group ">
+						<label class="control-label">Tên</label>
+						<input class="form-control"
+						type="text"
+						ngModel name="firstname" 
+						[(ngModel)]="form.firstname"
+						class="form-control" 
+						#firstname="ngModel" 
+						minlength="2"
+						required
+						>
+						<div *ngIf="firstname.touched && !firstname.valid">
+							<small *ngIf="firstname.errors.required" class="text-danger">
+								Vui lòng nhập Tên
+							</small>
+							<small *ngIf="firstname.errors.minlength" class="text-danger">
+								Tên phải lớn hơn hoặc bằng 2 kí tự
+							</small>
+						</div>
+					</div>
+
+
+					<div class="form-group is-empty">
+						<label class="control-label">Số điện thoại</label>
+						<input class="form-control"
+						type="number"
+						ngModel name="phone" 
+						[(ngModel)]="form.phone"
+						class="form-control" 
+						#phone="ngModel" 
+						>
+					</div>
+
+				</div>
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+					<div class="form-group ">
+						<label class="control-label">Họ</label>
+						<input class="form-control"
+						type="text"
+						ngModel name="lastname" 
+						[(ngModel)]="form.lastname"
+						class="form-control" 
+						#lastname="ngModel" 
+						minlength="2"
+						required
+						>
+						<div *ngIf="lastname.touched && !lastname.valid">
+							<small *ngIf="lastname.errors.required" class="text-danger">
+								Vui lòng nhập họ
+							</small>
+							<small *ngIf="lastname.errors.minlength" class="text-danger">
+								Họ phải lớn hơn hoặc bằng 2 kí tự
+							</small>
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<label class="control-label">Website</label>
+						<input class="form-control"
+						type="text"
+						ngModel name="website" 
+						[(ngModel)]="form.website"
+						class="form-control" 
+						#website="ngModel" 
+						minlength="2"
+						>
+					</div>
+				</div>
+				<div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="form-group ">
+						<label class="control-label">Mô tả về bạn</label>
+						<textarea class="form-control" ngModel name="description" 
+						[(ngModel)]="form.description"></textarea>
+					</div>
+
+<!-- 					<div class="form-group  is-select">
+						<label class="control-label">giới tính</label>
+						<select class="selectpicker form-control">
+							<option value="MA">Male</option>
+							<option value="FE">Female</option>
+						</select>
+					</div> -->
+				</div>
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+					<!-- <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button> -->
+				</div>
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+					<button class="btn btn-primary btn-lg full-width" type="submit" [disabled]="!loginForm.valid">Cập nhật thông tin</button>
+				</div>
+
+			</div>
+		</form>
+
+		<!-- ... end Personal Information Form  -->
+	</div>
+</div>

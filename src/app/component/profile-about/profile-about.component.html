@@ -1,0 +1,67 @@
+<div>
+	<app-sidebar-right-fixed></app-sidebar-right-fixed>
+	<app-header-bp></app-header-bp>
+	<app-profile-header></app-profile-header>
+	<div class="container" *ngIf="aboutInfo">
+		<div class="row">
+
+			<div class="col col-xl-12 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+				<div class="ui-block">
+					<div class="ui-block-title">
+						<h6 class="title">Thông tin cá nhân</h6>
+						<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+					</div>
+					<div class="ui-block-content">
+						<div class="row">
+							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+								<ul class="widget w-personal-info item-block">
+									<li>
+										<span class="title">Tên:</span>
+										<span class="text">
+											{{aboutInfo.metaUser.firstname}}
+										</span>
+									</li>
+									<li>
+										<span class="title">giới thiệu về bản thân:</span>
+										<span class="text">{{aboutInfo.metaUser.description}}</span>
+									</li>
+									<li>
+										<span class="title">Địa chỉ email:</span>
+										<span class="text">{{aboutInfo.email}} </span>
+									</li>
+								</ul>
+							</div>
+							<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+								<ul class="widget w-personal-info item-block">
+									<li>
+										<span class="title">Họ:</span>
+										<span class="text">{{aboutInfo.metaUser.lastname}}</span>
+									</li>
+									<li>
+										<span class="title">Số điện thoại:</span>
+										<span class="text">{{aboutInfo.metaUser.phone}}</span>
+									</li>
+									<li>
+										<span class="title">Website:</span>
+										<span class="text">{{aboutInfo.metaUser.website}} </span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+	<a class="back-to-top" (click)="backToTop()">
+		<img src="assets/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+	</a>
+
+
+
+	<app-windown-popup-chat></app-windown-popup-chat>
+</div>

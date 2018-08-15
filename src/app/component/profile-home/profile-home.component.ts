@@ -1,108 +1,97 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute}	from "@angular/router";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NewsfeedService } from '../service/newsfeed.service';
-import { TokenService } from '../service/token.service';
-import { ApiService } from '../service/api.service';
-import { FunctionService } from '../service/function.service';
+import { NewsfeedService } from '../../service/newsfeed.service';
+import { TokenService } from '../../service/token.service';
+import { ApiService } from '../../service/api.service';
+import { FunctionService } from '../../service/function.service';
 import { Router } from '@angular/router';
 import { HostListener} from "@angular/core";
 
 declare var jquery:any;
 declare var $ :any;
-
-
 @Component({
-	selector: 'app-news-feed',
-	templateUrl: './news-feed.component.html',
-	styleUrls: ['./news-feed.component.css']
+	selector: 'app-profile-home',
+	templateUrl: './profile-home.component.html',
+	styleUrls: ['./profile-home.component.css']
 })
-export class NewsFeedComponent implements OnInit {
-	public myInfo;
+export class ProfileHomeComponent implements OnInit {
 
+	public myInfo;
+	public listPost;
+	public error:null;
+	public user_id;
+	public autoload;
+	public paginate = 0;
+	public issetData =true;
+	public params;
+	public comment ={
+		content:null,
+	}
+	public editPost = {
+		content:null,
+		post_id:null,
+	};
+	public ContentCM:string;
+	public DataUser;
+	public countFriends = 0;
+	public isMyProfile:boolean;
+	public skipcomment:number = 0;
 	constructor(
+		private route:ActivatedRoute,
 		private NewsFeed: NewsfeedService,
 		private router: Router,
 		private Token: TokenService,
 		private functions: FunctionService,
 		private Api: ApiService,
 		private http: HttpClient
-		) {}
-	public listPost;
-	public error:null;
-	public user_id;
-	public autoload;
-	public paginate = 0;
-	public lostContent;
-	public issetData =true;
-	public postNews = {
-		summary:null,
-		content:null,
-		user_tag_id:null,
-		location:null,
-		type:null,
-		status:null,
-
-	};
-
-	public editPost = {
-		content:null,
-		post_id:null,
-	};
-
-	public comment ={
-		content:null,
-	}
-	public ContentCM:string;
-	public skipcomment:number = 0;
-	FileTest:File;
-	sizeObject:number;
-	ngOnInit() {
-		// lay thong tin user
-		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
-	//lấy data
-	this.NewsFeed.getNewsFeed().subscribe(
-		data => this.getData(data),
-		Error => {
-			alert("có lỗi trong quá trình lấy dữ liệu");
+		) {
+		this.route.params.subscribe(params=>
+		{
+			this.params = params;
+			this.Api.getPostByUid(params.id).subscribe(
+				data=>{
+					this.getData(data);
+					this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
+				},
+				Error=>{
+					alert('có lỗi có thể không tìm thấy người dùng yêu cầu');
+					return this.router.navigateByUrl('/');
+				}
+				);
 		}
 		);
+	}
 
-	this.autoload = setInterval(() => {
+	ngOnInit() {
+		this.autoload = setInterval(() => {
 	// sau 3000 ms sẽ load dữ liệu
 	this.getMorePost(); 
 }, 3000);
 
 
-}
+		this.Api.getDataUserByUid(this.params).subscribe(
+			data=>{
+				this.DataUser = data;
+				if (this.DataUser.isMyProfile) {
+					this.isMyProfile = true;
+				}else{
+					this.isMyProfile = false;
+				}
+				if (this.DataUser.listFriends.length >0) {
+					this.countFriends = this.DataUser.listFriends.length;
+				}else{
+					this.countFriends = 0;
+				}
+			},
+			Error=>{
+				console.log(Error);
+			});
 
-postNewsFeed(){
-	this.NewsFeed.postNewsFeed(this.postNews).subscribe(
-		maindata => {
-			if (this.FileTest !=null) {
-				this.Api.upLoadImage(this.FileTest, maindata['post_id'],this.sizeObject).subscribe(
-					data => {
-						$('.show_img_beforeupload').empty();
-						$('#clean_inp').val('');
-						$('#clean_inp').text('');
-						$('#img_pop_upload').val('');
-						this.FileTest =null;
-						maindata['listImage'] = data;
-						this.listPost.unshift(maindata);
-					},Error => {
-						alert("thêm ảnh thất bại");
-					});
-			}else{
-				$('.show_img_beforeupload').empty();
-				$('#clean_inp').val('');
-				$('#img_pop_upload').empty();
-				this.listPost.unshift(maindata);
-			}
-		},Error => {
-			alert("tạo bài viết thất bại");
-		});
-}
+	}
 
-updateActionStatus(idPost, type){
+
+	updateActionStatus(idPost, type){
 	//type : like
 	//type : comment
 	//type : share
@@ -125,11 +114,6 @@ updateActionStatus(idPost, type){
 		});
 }
 
-getData(data){
-	console.log(data);
-	this.listPost = data;
-};
-
 deletePost(post_id){ 
 	if (!confirm('ban có muốn xóa bài viết này ?')) {
 		return false;
@@ -143,10 +127,14 @@ deletePost(post_id){
 		});
 }
 
+getData(data){
+	console.log(data);
+	this.listPost = data;
+};
 getMorePost(){
 	// tự động lấy bài viết
 	this.paginate +=5;
-	this.NewsFeed.getNewsFeedMore(this.paginate).subscribe(
+	this.NewsFeed.getNewsFeedMore2(this.paginate, this.params.id).subscribe(
 		data=>{
 			if (data !='') {
 				var listddt = this.listPost.concat(data);
@@ -161,13 +149,9 @@ getMorePost(){
 		);
 }
 
+
 handleError(error){
 	this.error = error.error.error;
-}
-
-commentF(id){
-
-	alert('msg');
 }
 
 linkRedirectProfile(id: number){
@@ -179,30 +163,6 @@ linkRedirectProfile(id: number){
 toggleComment(post_id){
     $('#show_list_comment_'+post_id).slideToggle(); //
 }
-
-changeUpoadImage(event){
-	var checkfile=true;
-	$('.show_img_beforeupload').empty();
-	const file = event.target.files;
-	var ckUnit ='';
-	for (var i = 0; i < file.length; ++i) {
-		if (file[i].type == "image/png" || file[i].type == "image/jpeg") {
-			ckUnit += `<img src="${URL.createObjectURL(event.target.files[i])}">`;
-		}else{
-			checkfile=false;
-			break;
-		}
-	}
-	if (checkfile) {
-		$('.show_img_beforeupload').append(ckUnit);
-		this.FileTest = event.target.files;
-		this.sizeObject = file.length;
-	}else{
-		alert('định dạng file ko đúng');
-	}
-
-}
-
 
 pushCommentStatus(post_id){
 	if (this.ContentCM == '' || this.ContentCM.length <0) {
@@ -248,45 +208,44 @@ getMoreComment(post_id){
 
 }
 
-
-
 editMyPost(post_id){
 	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
 	this.editPost.post_id = post_id;
 	this.editPost.content = this.listPost[idObject2].content;
-	this.lostContent = this.listPost[idObject2].content;
 	$('#clean_inp2').val(this.listPost[idObject2].content);
 	$('#modal-edit-post').modal('show');
 }
 
 postEditMyPost(){
-	var content = this.editPost.content.trim();
-	if (content === null || content ===' ' ||content.lenght<=0) {
-		alert('nhập gì đi bạn');
-		return false;
-	}else{
-		var post_id = this.editPost.post_id;
-		var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
-		this.listPost[idObject2].content = this.editPost.content;
+	var post_id = this.editPost.post_id;
+	var idObject2 = this.functions.findIndexInObject(this.listPost, post_id);
+	this.listPost[idObject2].content = this.editPost.content;
 	// console.log(post_id);
 	
 	this.NewsFeed.updatePost(this.editPost).subscribe(data=>{
 		// console.log(data);
 	},Error=>{
-		this.listPost[idObject2].content = this.lostContent;
 		console.log('cập nhật bài viết bị lỗi');
-		alert('cập nhật bài viết bị lỗi');
 	}
 	);
 	
 	$('#modal-edit-post').modal('hide');
 }
-}
+
 
 openImg(link){
 	// window.location.href = link;
 	$('#change_img_ch').attr('src', link);
 	$('#show_img').modal('show');
+}
+
+
+// ============link
+// linkRedirectProfile(id: number){
+// 	return this.router.navigateByUrl('/u/'+id);
+// }
+backToTop(){
+	$(window).scrollTop(0).animate('slow');
 }
 deleteComment(comment_id, post_id){
 	if (confirm('bạn có chắc chắn muốn xóa bình luận này?')) {
@@ -304,10 +263,6 @@ deleteComment(comment_id, post_id){
 		
 	}
 
-}
-seemore(post_id){
-	$("#seemore_"+post_id).css('max-height', '100%');;
-	$("#button_see_more_"+post_id).hide();
 }
 
 }

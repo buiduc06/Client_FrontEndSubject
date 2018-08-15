@@ -27,7 +27,15 @@ findIndexInObjectById(object ,p_id) {
 		}
 	}
 }
-
+findIndexInObjectByComment(object ,p_id) {
+	for(var i = 0; i < object.length; i++)
+	{
+		if(object[i].comment_id == p_id)
+		{
+			return i;
+		}
+	}
+}
 
 hasWhiteSpace(s)
 {

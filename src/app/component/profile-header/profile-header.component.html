@@ -7,7 +7,7 @@
 				<div class="ui-block">
 					<div class="top-header">
 						<div class="top-header-thumb">
-							<img src="assets/img/top-header1.jpg" alt="nature">
+							<img src="{{DataUser.cover}}" alt="nature" id="main_cover">
 						</div>
 						<div class="profile-section">
 							<div class="row">
@@ -17,30 +17,32 @@
 											<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="active">Dòng Thời Gian</a>
 										</li>
 										<li>
-											<a href="05-ProfilePage-About.html">Thông Tin</a>
+											<a href="javascript:;" [routerLink]="['/u/about', DataUser?.uid_user]">Thông Tin</a>
 										</li>
 										<li>
-											<a href="06-ProfilePage.html">Bạn Bè</a>
+											<a href="javascript:;" [routerLink]="['/u/friends', DataUser?.uid_user]">Bạn Bè</a>
 										</li>
 									</ul>
 								</div>
 								<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
 									<ul class="profile-menu">
 										<li>
-											<a href="07-ProfilePage-Photos.html">Hình Ảnh</a>
+											<a href="javascript:;" [routerLink]="['/u/photos', DataUser?.uid_user]">Hình Ảnh</a>
 										</li>
 										<li>
-											<a href="09-ProfilePage-Videos.html">Videos</a>
+											<a href="javascript:;"  routerLink="/u/{{DataUser.uid_user}}/settings">Cài đặt</a>
 										</li>
 										<li>
 											<div class="more">
 												<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-												<ul class="more-dropdown more-with-triangle">
-													<li>
-														<a href="#">Báo cáo người dùng này</a>
+												<ul class="more-dropdown more-with-triangle triangle-bottom-right">
+													<li class="file-upload">
+														<label for="upload" class="file-upload__label bg-blue">Cập nhật ảnh đại diện</label>
+														<input type="file" id="img_pop_upload" (change)="changeAvatar($event)">
 													</li>
-													<li>
-														<a href="#">Chặn người này</a>
+													<li class="file-upload">
+														<label for="upload" class="file-upload__label bg-red">Cập nhật ảnh bìa</label>
+														<input type="file" id="img_pop_upload" (change)="changeCover($event)">
 													</li>
 												</ul>
 											</div>
@@ -50,15 +52,15 @@
 							</div>
 
 							<div class="control-block-button">
-								<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
+								<!-- <a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
 									<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 								</a>
 
 								<a href="#" class="btn btn-control bg-purple">
 									<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-								</a>
+								</a> -->
 
-								<div class="btn btn-control bg-primary more">
+								<!-- <div class="btn btn-control bg-primary more">
 									<svg class="olymp-settings-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
 
 									<ul class="more-dropdown more-with-triangle triangle-bottom-right">
@@ -72,12 +74,12 @@
 											<a href="29-YourAccount-AccountSettings.html">Cài đặt tài khoản</a>
 										</li>
 									</ul>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="top-header-author">
 							<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="author-thumb">
-								<img src="{{DataUser?.avatar}}" alt="author">
+								<img src="{{DataUser?.avatar}}" alt="author" id="main_avatar">
 							</a>
 							<div class="author-content">
 								<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="h4 author-name">{{DataUser?.name}}</a>
@@ -97,7 +99,7 @@
 				<div class="ui-block">
 					<div class="top-header top-header-favorit">
 						<div class="top-header-thumb">
-							<img src="assets/img/top-header2.jpg" alt="nature">
+							<img src="{{DataUser.cover}}" alt="nature">
 							<div class="top-header-author">
 								<div class="author-thumb">
 									<img src="{{DataUser.avatar}}" alt="author" (click)="openImg(DataUser.avatar)">
@@ -113,32 +115,56 @@
 								<div class="col col-xl-8 m-auto col-lg-8 col-md-12">
 									<ul class="profile-menu">
 										<li>
-											<a href="javascript:void(0)" class="active">Dòng thời gian</a>
+											<a href="javascript:;" [routerLink]="['/u', DataUser?.uid_user]" class="active">Dòng Thời Gian</a>
 										</li>
 										<li>
-											<a href="13-FavouritePage-About.html">Thông tin cá nhân</a>
+											<a href="javascript:;" [routerLink]="['/u/about', DataUser?.uid_user]">Thông Tin</a>
 										</li>
 										<li>
-											<a href="07-ProfilePage-Photos.html">Ảnh</a>
+											<a href="javascript:;" [routerLink]="['/u/friends', DataUser?.uid_user]">Bạn Bè</a>
 										</li>
 										<li>
-											<a href="09-ProfilePage-Videos.html">Bạn bè</a>
+											<a href="javascript:;" [routerLink]="['/u/photos', DataUser?.uid_user]">Hình Ảnh</a>
 										</li>
 										<li>
-											<a href="15-FavouritePage-Events.html">Sự kiện</a>
+											<a href="javascript:;"></a>
 										</li>
 									</ul>
 								</div>
 							</div>
 
 							<div class="control-block-button">
-								<a href="javascript:void(0)" class="btn btn-control bg-primary" title="Hủy kết bạn">
-									<svg class="olymp-star-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-								</a>
+								<span class="notification-icon">
+									<a href="javascript:void(0)" class="accept-request" *ngIf="DataUser.isMyfriends =='notfriend'" (click)="makeFriend()">
+										<span class="icon-add">
+											<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+										Gửi lời mời kết bạn
+									</a>
 
-								<a href="javascript:void(0)" class="btn btn-control bg-purple" title="Gửi tin nhắn">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-								</a>
+									<a href="javascript:void(0)" class="accept-request" *ngIf="DataUser.isMyfriends == 'sendfriend'" (click)="cancelFriend()" style="background-color: darkcyan">
+										<span class="icon-add">
+											<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+										Đã gửi lời mời kết bạn
+									</a>
+
+									<a href="javascript:void(0)" class="accept-request" *ngIf="DataUser.isMyfriends =='friend'" style="background-color: gray" (click)="deleteFriend()">
+										<span class="icon-minus" style="margin-right: 15px">
+											<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+										Hủy kết bạn
+									</a>
+
+									<a href="javascript:void(0)" class="accept-request" *ngIf="DataUser.isMyfriends =='pendingfriend'" (click)="AppendFriends()" style="background-color: tomato">
+										<span class="icon-add">
+											<svg class="olymp-happy-face-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+										Chấp nhận kết bạn
+									</a>
+
+								</span>
+
 
 							</div>
 						</div>
@@ -150,3 +176,24 @@
 </div>
 
 <app-show-img-popup></app-show-img-popup>
+
+
+
+
+<div class="modal fade" id="update-header-photo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

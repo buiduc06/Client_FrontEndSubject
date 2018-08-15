@@ -15,7 +15,9 @@ export class NewsfeedService {
 	getNewsFeedMore(paginate){
 		return this.http.post(`${this.baseUrl}/getNewsFeed`, {'page':paginate});
 	} 
-
+	getNewsFeedMore2(paginate, uid_user){
+		return this.http.post(`${this.baseUrl}/getNewsFeedByUidUser`, {'page':paginate, uid_user:uid_user});
+	} 
 	postNewsFeed(data){
 		return this.http.post(`${this.baseUrl}/postNewsFeed`, data);
 	}

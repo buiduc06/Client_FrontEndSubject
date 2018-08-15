@@ -40,7 +40,7 @@ export class HeaderBpComponent implements OnInit {
     this.ApiService.getRequestFriend().subscribe(
       data=>{
         this.dataRequestFriend = data;
-        if (data >0) {
+        if (this.dataRequestFriend.lenght != 0) {
           this.lenghtRQfriends = this.dataRequestFriend.length;
         }else{
            this.lenghtRQfriends = 0;
@@ -104,6 +104,7 @@ export class HeaderBpComponent implements OnInit {
       data=>{
         var findIndex = this.functions.findIndexInObjectById(this.dataRequestFriend, user_id);
         this.dataRequestFriend.splice([findIndex], 1);
+        this.lenghtRQfriends -=1;
       },Error=>{
         console.log(Error);
       }
@@ -116,6 +117,7 @@ export class HeaderBpComponent implements OnInit {
       data=>{
         var findIndex = this.functions.findIndexInObjectById(this.dataRequestFriend, user_id2);
         this.dataRequestFriend.splice([findIndex], 1);
+        this.lenghtRQfriends -=1;
       },Error=>{
         console.log(Error);
       }

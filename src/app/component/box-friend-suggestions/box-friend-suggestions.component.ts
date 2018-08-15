@@ -18,7 +18,7 @@ export class BoxFriendSuggestionsComponent implements OnInit {
   	this.api.getListSuggestFriends().subscribe(
   		data=>{
   			this.listFriend = data;
-        // console.log(data);
+        console.log(data);
       },Error=>{
         console.log(Error);
       }

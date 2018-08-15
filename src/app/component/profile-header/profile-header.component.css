@@ -2,3 +2,25 @@
 	    object-fit: cover;
     width: 100%;
 }
+#img_pop_upload{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.profile-section .control-block-button{
+    top: -60px;
+}
+.top-header-thumb img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    max-height: 400px;
+    object-fit: cover;
+}

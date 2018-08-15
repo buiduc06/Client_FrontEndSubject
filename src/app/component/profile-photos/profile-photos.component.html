@@ -1,0 +1,42 @@
+<div>
+	<app-sidebar-right-fixed></app-sidebar-right-fixed>
+	<app-header-bp></app-header-bp>
+	<app-profile-header></app-profile-header>
+	<div class="container">
+		<div class="row">
+			<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<!-- Tab panes -->
+				<div class="tab-content" *ngIf="aboutInfo">
+					<div class="tab-pane active" id="album-page" role="tabpanel">
+						<div class="photo-album-wrapper">
+							<div class="photo-album-item-wrap col-4-width" *ngFor="let itemImg of aboutInfo.listImgUpload">
+								<div class="photo-album-item" data-mh="album-item">
+									<div class="photo-item">
+										<img src="{{itemImg}}" alt="photo">
+										<div class="overlay overlay-dark"></div>
+										<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+										<a href="#" data-toggle="modal" data-target="#open-photo-popup-v2" class="  full-block" (click)="openImg(itemImg)"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div class="modal fade" id="show_img">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- <div class="modal-body"> -->
+					<div class="modal-body">
+						<img src="assets/img/open-photo1.jpg" width="100%" alt="photo" id="change_img_ch">
+					</div>
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>

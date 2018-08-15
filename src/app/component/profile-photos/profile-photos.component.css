@@ -1,0 +1,9 @@
+.photo-album-item-wrap{
+	height: 250px;
+}
+.photo-album-item,.photo-item, .photo-item img{
+	height: 100%;
+}
+.photo-item img{
+	object-fit: cover;
+}

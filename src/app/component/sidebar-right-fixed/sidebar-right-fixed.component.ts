@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../service/api.service';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -7,16 +8,30 @@ declare var $ :any;
 	styleUrls: ['./sidebar-right-fixed.component.css']
 })
 export class SidebarRightFixedComponent implements OnInit {
-
-	constructor() { }
+public dataFriends;
+	constructor(
+		private Api: ApiService,
+		) { }
 
 	ngOnInit() {
+		this.Api.getListFriends().subscribe(data=>{
+			this.dataFriends = data;
+		});
 	}
 
 
 
 
-	openChat(user_id){
-		$('#chatRealtime').toggleClass('open-chat');
+	// openChat(user_id){
+	// 	$('#chatRealtime').toggleClass('open-chat');
+	// }
+	openBar(){
+		var ck = $('.fixed-sidebar');
+		if (ck.is('.open')) {
+			$('.fixed-sidebar').removeClass('open');
+		}else{
+			$('.fixed-sidebar').addClass('open');
+		}
 	}
+
 }

@@ -44,6 +44,7 @@
 								</div>
 								<div class="notification-event">
 									<a href="javascript:void(0)" [routerLink]="['/u', itemF.uid_user]" class="h6 notification-friend">{{itemF.name}}</a>
+									<span class="chat-message-item">{{itemF.generalFriends}} bạn chung</span>
 								</div>
 								<span class="notification-icon">
 									<a href="javascript:void(0)" class="accept-request">
@@ -63,20 +64,19 @@
 									</a>
 
 								</span>
-
 								<div class="more">
 									<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 						</ul>
-						<h6 class="text-center" style="margin-top: 20px" *ngIf="dataRequestFriend.lenght==null">Không có lời mời kết bạn nào</h6>
+						<h6 class="text-center" style="margin-top: 20px" *ngIf="dataRequestFriend==null">Không có lời mời kết bạn nào</h6>
 					</div>
 
 					<!-- 					<a href="#" class="view-all bg-blue">Xem tất cả lời mời</a> -->
 				</div>
 			</div>
 
-			<div class="control-icon more has-items">
+			<!-- <div class="control-icon more has-items">
 				<svg class="olymp-chat---messages-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
 				<div class="label-avatar bg-purple">2</div>
 
@@ -149,7 +149,7 @@
 
 					<a href="#" class="view-all bg-primary">Xem tất cả các thông báo</a>
 				</div>
-			</div>
+			</div> -->
 			<div class="author-page author vcard inline-items more">
 				<div class="author-thumb">
 					<img alt="author" src="{{dataUser?.avatar}}">

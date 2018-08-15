@@ -26,5 +26,9 @@ export class WindownPopupComponent implements OnInit {
   	}
   	$('.show_img_beforeupload').append(ckUnit);
   }
+
+  backToTop(){
+  $(window).scrollTop(0).animate('slow');
+}
   
 }

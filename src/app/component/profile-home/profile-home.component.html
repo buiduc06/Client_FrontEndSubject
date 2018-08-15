@@ -1,80 +1,9 @@
-<app-sidebar-right-fixed></app-sidebar-right-fixed>
-<app-header-bp></app-header-bp>
-
-<div class="container" *ngIf="listPost && myInfo">
+<div class="container" *ngIf="listPost && DataUser">
 	<div class="row">
 
 		<!-- Main Content -->
 
-		<main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
-
-			<div class="ui-block">
-				
-				<!-- News Feed Form  -->
-				
-				<div class="news-feed-form">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
-
-								<svg class="olymp-status-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-status-icon"></use></svg>
-
-								<span>Trạng Thái</span>
-							</a> 
-						</li>
-
-					</ul>
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-							<form #loginForm=ngForm (ngSubmit)="postNewsFeed()" enctype="multipart/form-data">
-								<div class="author-thumb">
-									<img src="{{myInfo.avatar}}" alt="author">
-								</div>
-								<div class="form-group with-icon label-floating is-empty">
-									<label class="control-label">Hôm nay bạn cảm thấy thế nào...</label>
-									<textarea 
-									class="form-control" 
-									placeholder="" 
-									ngModel name="content" 
-									[(ngModel)]="postNews.content"
-									#content="ngModel"	
-									required id="clean_inp"></textarea>
-									<small class="text-danger" style="margin-left: 20px" *ngIf="content.touched && !content.valid">nhập gì đó đi bạn êi</small>
-								</div>
-
-								<div class="show_img_beforeupload">
-								</div>
-
-								<div class="add-options-message">
-									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD PHOTOS">
-										<svg class="olymp-camera-icon" data-toggle="modal" data-target="#update-header-photo"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
-										<input type="file" id="img_pop_upload" (change)="changeUpoadImage($event)" multiple accept="image/png, image/jpeg">
-									</a>
-								<!-- 	<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="TAG YOUR FRIENDS">
-										<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
-									</a>
-
-									<a href="#" class="options-message" data-toggle="tooltip" data-placement="top"   data-original-title="ADD LOCATION">
-										<svg class="olymp-small-pin-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
-									</a> -->
-
-									<button type="submit" class="btn btn-primary btn-md-2" [disabled]="!loginForm.valid">Đăng Bài viết</button>
-									<!-- <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
-
-								</div>
-
-							</form>
-						</div>
-
-					</div>
-				</div>
-				
-				<!-- ... end News Feed Form  -->			
-			</div>
-
+		<div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
 			<div id="newsfeed-items-grid" *ngFor="let itemPost of listPost">
 
 
@@ -90,7 +19,7 @@
 									{{itemPost.post_user_info.name}}
 								</a>
 								<div class="post__date">
-									<time class="published" datetime="2004-07-24T18:18">
+									<time class="published" datetime="2018-07-24T18:18">
 										{{itemPost.created_at}}
 									</time>
 								</div>
@@ -109,9 +38,8 @@
 							</div> 
 						</div>
 
-						<p id="seemore_{{itemPost.post_id}}">{{itemPost.content}}
+						<p>{{itemPost.content}}
 						</p>
-						<a href="javascript:void(0)" *ngIf="itemPost.content.length >600" (click)="seemore(itemPost.post_id)" id="button_see_more_{{itemPost.post_id}}">see more</a>
 
 						<div class="post-thumb" *ngIf="itemPost.listImage">
 							<img *ngFor="let itemImg of itemPost.listImage" (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
@@ -153,7 +81,8 @@
 									<img src="{{itemComment.user_data.avatar}}" alt="author">
 
 									<div class="author-date">
-										<p><a class="h6 post__author-name fn" [routerLink]="['/u', itemComment.user_data.uid_user]">{{itemComment.user_data.name}}</a> {{itemComment.content}}</p>
+										<p><a class="h6 post__author-name fn" [routerLink]="['/u', itemComment.user_data.uid_user]" href="javascript:void(0)">{{itemComment.user_data.name}}</a> {{itemComment.content}}</p>
+
 										<div class="post__date">
 											<time class="published" datetime="2017-03-24T18:18">
 												{{itemComment.created_at}}
@@ -176,12 +105,12 @@
 						<form class="comment-form inline-items" #loginForm=ngForm (ngSubmit)="pushCommentStatus(itemPost.post_id)">
 
 							<div class="post__author author vcard inline-items">
-								<img src="{{myInfo.avatar}}" alt="author">
+								<img src="{{myInfo?.avatar}}" alt="author">
 								<div class="form-group with-icon-right ">
 									<textarea class="form-control box_comment_d" 
 									(change)="changeCommentTextera($event)"  
 									></textarea>
-									
+
 								</div>
 							</div>
 							<button class="btn btn-md-2 btn-primary">Đăng bình luận</button>
@@ -189,7 +118,6 @@
 					</div>
 				</div>
 			</div>
-
 
 			<div class="timeline-wrapper" *ngIf="issetData">
 				<div class="timeline-item">
@@ -211,44 +139,95 @@
 				</div>
 			</div>
 			<h4 *ngIf="!issetData" class="text-center">Không có bài viết nào để hiển thi</h4>
-
-		</main>
+		</div>
 
 		<!-- ... end Main Content -->
 
 
 		<!-- Left Sidebar -->
 
-		<aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
-			<app-box-weather></app-box-weather>
+		<div class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
 
-			<app-box-calendar></app-box-calendar>
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Thông Tin Cá nhân</h6>
+				</div>
+				<div class="ui-block-content">
 
-			<!-- W-Friend-Pages-Added -->
+					<!-- W-Personal-Info -->
 
-			<!-- <app-box-page-you-may-like></app-box-page-you-may-like> -->
+					<ul class="widget w-personal-info item-block">
+						<li>
+							<!-- <span class="title">About Me:</span> -->
+							<span class="text">{{DataUser.metaUser.description}}</span>
+						</li>
+					</ul>
 
-			<!-- .. end W-Friend-Pages-Added -->
-
-		</aside>
+					<!-- .. end W-Personal-Info -->
+				</div>
+			</div>
+		</div>
 
 		<!-- ... end Left Sidebar -->
 
 
 		<!-- Right Sidebar -->
 
-		<aside class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
-			<!-- <app-box-birthday></app-box-birthday> -->
-			<app-box-friend-suggestions></app-box-friend-suggestions>
-			<!-- <app-box-activity-feed></app-box-activity-feed> -->
-		</aside>
+		<div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
 
-		<!-- ... end Right Sidebar -->
-	</div>
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Hình ảnh </h6>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Latest-Photo -->
+
+					<ul class="widget w-last-photo js-zoom-gallery" *ngIf="DataUser?.listImgUpload">
+						<li *ngFor="let itemImg of DataUser.listImgUpload">
+							<a href="{{itemImg}}">
+								<img src="{{itemImg}}" alt="photo">
+							</a>
+						</li>
+					</ul>
+
+
+					<!-- .. end W-Latest-Photo -->
+				</div>
+			</div>
+
+
+
+			<div class="ui-block">
+				<div class="ui-block-title">
+					<h6 class="title">Bạn bè ({{countFriends}})</h6>
+				</div>
+				<div class="ui-block-content">
+
+					<!-- W-Faved-Page -->
+
+					<ul class="widget w-faved-page js-zoom-gallery">
+						<li *ngFor="let itemFriends of DataUser?.listFriends">
+							<a [routerLink]="['/u', itemFriends.uid_user]" href="javascript:void(0)">
+								<img src="{{itemFriends.avatar}}" alt="{{itemFriends.name}}" title="{{itemFriends.name}}">
+							</a>
+						</li>
+<!-- 	<li class="all-users">
+<a href="#">+74</a>
+</li> -->
+</ul>
+
+<!-- .. end W-Faved-Page -->
+</div>
+</div>
 </div>
 
-<app-windown-popup></app-windown-popup>
-<app-windown-popup-chat></app-windown-popup-chat>
+<!-- ... end Right Sidebar -->
+
+</div>
+</div>
+
+
 
 
 <!-- model sửa bài viết -->
@@ -272,7 +251,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-				<button type="submit" class="btn btn-primary" [disabled]="!loginForm2.valid" >Lưu thay đổi</button>
+				<button type="submit" class="btn btn-primary">Lưu thay đổi</button>
 			</div>
 		</form>
 	</div>

@@ -78,18 +78,60 @@ export class ApiService {
     return this.http.post(`${this.userData}/addCommentToPost`, {'comment':comment, 'post_id':post_id});
   }
 
-searchUser(data){
-   return this.http.post(`${this.userData}/searchUser`, data);
-}
+  searchUser(data){
+    return this.http.post(`${this.userData}/searchUser`, data);
+  }
 
-getRequestFriend(){
-  return this.http.get(`${this.userData}/getRequestFriend`);
-}
+  getRequestFriend(){
+    return this.http.get(`${this.userData}/getRequestFriend`);
+  }
 
-appendFriends(data){
-  return this.http.post(`${this.userData}/appendFriends`, data);
-}
-miunusFriends(data){
-  return this.http.post(`${this.userData}/miunusFriends`, data);
-}
+  appendFriends(data){
+    return this.http.post(`${this.userData}/appendFriends`, data);
+  }
+  miunusFriends(data){
+    return this.http.post(`${this.userData}/miunusFriends`, data);
+  }
+  deleteFriends(data){
+    // xóa bạn bè
+    return this.http.post(`${this.userData}/deleteFriends`, data);
+  }
+  cancelFriends(data){
+    // hủy gửi lời mời
+    return this.http.post(`${this.userData}/cancelFriends`, data);
+  }
+  getListFriends(){
+    return this.http.get(`${this.userData}/getListFriends`);
+  }
+
+  changeMyInfo(data){
+    return this.http.post(`${this.userData}/changeMyInfo`, data);
+  }
+  getMetaMyInfo(){
+    return this.http.get(`${this.userData}/getMetaMyInfo`);
+  }
+  changePassword(data){
+    return this.http.post(`${this.userData}/changePassword`, data);
+  }
+  changeAvatar(FileTest, type_upload){
+
+    let file: File = FileTest;
+    let formData = new FormData();
+    formData.append('upload', FileTest);
+    formData.append('type', type_upload);
+    return this.http.post(`${this.userData}/changeAvatar`, formData);
+  }
+  deleteComment(comment_id){
+    return this.http.post(`${this.userData}/deleteComment`, {comment_id:comment_id});
+  }
+  getMoreComment(data){
+    return this.http.post(`${this.userData}/getMoreComment`, data);
+  }
+  addMessages(data){
+    return this.http.post(`${this.userData}/addMessages`, data);
+  }
+  getMessages(data){
+    return this.http.post(`${this.userData}/getMessages`, data);
+  }
+
 }

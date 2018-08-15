@@ -28,6 +28,13 @@ import { TokenInterceptor } from './guards/intercreptors/token.intercreptor';
 import { ProfileHeaderComponent } from './component/profile-header/profile-header.component';
 import { ShowImgPopupComponent } from './component/show-img-popup/show-img-popup.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { ProfileAboutComponent } from './component/profile-about/profile-about.component';
+import { ProfileFriendsComponent } from './component/profile-friends/profile-friends.component';
+import { ProfilePhotosComponent } from './component/profile-photos/profile-photos.component';
+import { ProfileHomeComponent } from './component/profile-home/profile-home.component';
+import { ProfileChangePersionInfoComponent } from './component/profile-change-persion-info/profile-change-persion-info.component';
+import { ProfileChangePasswordComponent } from './component/profile-change-password/profile-change-password.component';
+import { ProfileSettingsComponent } from './component/profile-settings/profile-settings.component';
 // import { RefreshTokenInterceptor } from './guards/intercreptors/refreshToken.intercreptor';
 
 
@@ -52,7 +59,14 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     AuthComponent,
     ProfileHeaderComponent,
     ShowImgPopupComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProfileAboutComponent,
+    ProfileFriendsComponent,
+    ProfilePhotosComponent,
+    ProfileHomeComponent,
+    ProfileChangePersionInfoComponent,
+    ProfileChangePasswordComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,

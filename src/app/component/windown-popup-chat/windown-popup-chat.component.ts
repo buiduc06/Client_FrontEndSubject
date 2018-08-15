@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../service/api.service';
 declare var jquery:any;
 declare var $ :any;
 // import { ChatService } from '../../service/chat.service';
@@ -9,22 +10,39 @@ declare var $ :any;
 	styleUrls: ['./windown-popup-chat.component.css']
 })
 export class WindownPopupChatComponent implements OnInit {
-	msgInput: string = 'lorem ipsum';
+	msgInput: string;
+	public Msg ={
+		friend_id:22,
+		messages:null,
+
+	};
+	public autoload;
 	constructor(
-		// private chatService: ChatService,
+		private Api: ApiService,
 		) { }
 
 	ngOnInit() {
-		// this.chatService.onNewMessage().subscribe(msg => {
-		// 	console.log('got a msg: ' + msg);
-		// });
+		// this.autoload = setInterval(() => {
+		// 	this.getMoreMessages(); 
+		// }, 3000);
+	}
+	getMoreMessages(){
+		this.Api.addMessages(this.Msg).subscribe(
+			data=>console.log(data),
+			Error=>console.log(Error)
+			);
+	}
+	sendMessages(){
+		this.Api.addMessages(this.Msg).subscribe(
+			data=>console.log(data),
+			Error=>console.log(Error)
+			);
 	}
 
-	// sendButtonClick() {
-	// 	this.chatService.sendMessage(this.msgInput);
-	// }
-
-	// openChat(user_id){
-	// 	$('#chatRealtime').toggleClass('open-chat');
-	// }
+	changeCommentTextera(event){
+	this.Msg.messages = event.target.value;
+}
+	openChat(){
+		$('#chatRealtime').toggleClass('open-chat');
+	}
 }

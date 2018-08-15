@@ -28,8 +28,9 @@ export class ProfileHeaderComponent implements OnInit {
 			this.Api.getUserByUid(params).subscribe(
 				data=>{
 					this.DataUser = data;
+					console.log(data);
 					this.isMydata = data['isMydata'];
-					console.log(this.DataUser);
+					console.log(data);
 				},
 				Error=>{
 					console.log(Error);
@@ -42,11 +43,75 @@ export class ProfileHeaderComponent implements OnInit {
 
 	}
 
-	  openImg(link){
+	openImg(link){
 	// window.location.href = link;
 	$('#change_img_ch').attr('src', link);
 	$('#show_img').modal('show');
 }
+changeAvatar(event){
+	const file = event.target.files[0];
+	this.Api.changeAvatar(file, 'avatar').subscribe(data=>{
+		alert('Cập nhật ảnh đại diện thành công');
+		$('#main_avatar').attr('src', data);
+	},Error=>{
+		alert('Lỗi ! định dạng file không hợp lệ hoặc có lỗi ');
+	});
+}
 
+changeCover(event){
+	const file = event.target.files[0];
+	this.Api.changeAvatar(file, 'banner').subscribe(data=>{
+		alert('Cập nhật ảnh bìa diện thành công');
+		$('#main_avatar').attr('src', data);
+	},Error=>{
+		alert('Lỗi ! định dạng file không hợp lệ hoặc có lỗi ');
+	});
+}
+makeFriend(){
+	this.Api.makeFriend(this.DataUser.id).subscribe(
+		data =>{
+			alert('gửi lời mời kết bạn thành công');
+			location.reload();
+		},Error=>{
+			console.log(Error);
+		}
+		);
+}
+
+AppendFriends(){
+
+	this.Api.appendFriends({user_id:this.DataUser.id}).subscribe(
+		data=>{
+			alert('chấp nhận kết bạn thành công');
+			location.reload();
+		},Error=>{
+			console.log(Error);
+		}
+		);
+
+}
+deleteFriend(){
+	this.Api.deleteFriends({user_id:this.DataUser.id}).subscribe(
+		data=>{
+			alert('Hủy kết bạn thành công');
+			location.reload();
+		},
+		error=>{
+			console.log(error);
+			console.log('lỗi hủy kết bạn');
+		});
+}
+
+cancelFriend(){
+	this.Api.cancelFriends({user_id:this.DataUser.id}).subscribe(
+		data=>{
+			alert('cancle lời mời kết bạn thành công');
+			location.reload();
+		},
+		error=>{
+			console.log(error);
+			console.log('lỗi hủy kết bạn');
+		});
+}
 
 }

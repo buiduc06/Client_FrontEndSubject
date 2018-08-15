@@ -1,0 +1,32 @@
+<div>
+	<app-sidebar-right-fixed></app-sidebar-right-fixed>
+	<app-header-bp></app-header-bp>
+	<app-profile-header></app-profile-header>
+
+	<div class="container" *ngIf="aboutInfo">
+		<div class="row">
+			<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6" *ngFor="let friends of aboutInfo.listFriends">
+				<div class="ui-block">
+					<div class="friend-item">
+						<div class="friend-header-thumb">
+							<img src="assets/img/friend1.jpg" alt="friend">
+						</div>
+
+						<div class="friend-item-content">
+							<div class="friend-avatar">
+								<div class="author-thumb">
+									<img src="{{friends.avatar}}" alt="author">
+								</div>
+								<div class="author-content">
+									<a href="javascript:;" [routerLink]="['/u', friends.uid_user]" class="h5 author-name">{{friends.name}}</a>
+									<div class="country">{{friends.genFriend}} bạn chung</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
