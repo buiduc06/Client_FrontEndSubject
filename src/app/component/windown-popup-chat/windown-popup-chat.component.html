@@ -1,7 +1,7 @@
 
 <!-- Window-popup-CHAT for responsive min-width: 768px -->
 
-<div class="ui-block popup-chat popup-chat-responsive open" id='chatRealtime'>
+<div class="ui-block popup-chat popup-chat-responsive open chatRealtime" id='chatRealtime'>
 
 	<div class="modal-content">
 		<div class="modal-header">
@@ -15,46 +15,29 @@
 		<div class="modal-body">
 			<div class="mCustomScrollbar">
 				<ul class="notification-list chat-message chat-message-field">
-					<li>
-						<div class="author-thumb">
+					<!-- <div *ngIf="dataMessage"> -->
+					<li *ngFor="let messages of dataMessage">
+
+						<div class="author-thumb" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'">
 							<img src="assets/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
 						</div>
-						<div class="notification-event">
-							<span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+						<div class="notification-event" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'">
+							<span class="chat-message-item" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'" *ngFor="let itemMessage of messages.message" >{{itemMessage.message}}</span>
+						<!-- 	<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span> -->
 						</div>
 					</li>
-
-					<li>
-						<div class="author-thumb">
-							<img src="assets/img/author-page.jpg" alt="author" class="mCS_img_loaded">
-						</div>
-						<div class="notification-event">
-							<span class="chat-message-item">Don’t worry Mathilda!</span>
-							<span class="chat-message-item">I already bought everything</span>
-							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
-						</div>
-					</li>
-
-					<li>
-						<div class="author-thumb">
-							<img src="assets/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
-						</div>
-						<div class="notification-event">
-							<span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
-						</div>
-					</li>
+					<!-- </div> -->
 				</ul>
+			 
 			</div>
 
 			<form class="need-validation" #loginForm=ngForm (ngSubmit)="sendMessages()">
 
 				<div class="form-group label-floating is-empty">
 					<label class="control-label">Nhập gì đó...</label>
-					<textarea class="form-control" (change)="changeCommentTextera($event)" ></textarea>
+					<textarea class="form-control" (change)="changeCommentTextera($event)" (keyup.enter)="sendMsgbyKeyEnter($event)" id="box_chat"></textarea>
 					<div class="add-options-message">
-						<a href="javascript:;" class="options-message" (click)="sendMessages()">
+						<a href="javascript:;" class="options-message" (click)="sendButtonClick()">
 							<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
 						</a>
 					</div>

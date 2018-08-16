@@ -148,7 +148,7 @@ getMorePost(){
 	this.paginate +=5;
 	this.NewsFeed.getNewsFeedMore(this.paginate).subscribe(
 		data=>{
-			if (data !='') {
+			if (data !='' && data !='undefined') {
 				var listddt = this.listPost.concat(data);
 				this.listPost = listddt;
 			}else{

@@ -22,9 +22,9 @@ public dataFriends;
 
 
 
-	// openChat(user_id){
-	// 	$('#chatRealtime').toggleClass('open-chat');
-	// }
+	openChat(user_id){
+		$('#chatRealtime').toggleClass('open-chat');
+	}
 	openBar(){
 		var ck = $('.fixed-sidebar');
 		if (ck.is('.open')) {
