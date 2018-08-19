@@ -14,13 +14,14 @@
 				<ul class="notification-list chat-message chat-message-field" id="style-4">
 					<a href="javascript:;" *ngFor="let messages of dataMessage"> 
 						<li *ngIf="messages.channel == itemFriends.channel" [ngClass]="messages.user.id == myInfo.id ? 'my_message': 'friend_message'"  >
-							<div class="author-thumb" *ngIf="messages.channel == itemFriends.channel">
+							<div class="author-thumb">
 								<img src="{{messages.user.avatar}}" alt="author">
 							</div>
-							<div class="notification-event" *ngIf="messages.channel == itemFriends.channel">
+							<div class="notification-event" >
 								<span class="chat-message-item" *ngFor="let itemMessage of messages.message">{{itemMessage.message}}</span>
 							</div>
 						</li>
+					 
 					</a>
 				</ul>
 			</div>

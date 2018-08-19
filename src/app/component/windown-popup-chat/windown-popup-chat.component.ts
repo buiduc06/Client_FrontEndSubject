@@ -39,12 +39,11 @@ export class WindownPopupChatComponent implements OnInit {
 	ngOnInit() {
 		this.Api.getMyInfo().subscribe(
 			data => {
-				console.log(data);
 				this.socket.on('serverChatToClient_' + data['uid_user'], msg => {
 					console.log(msg);
-					if (this.dataMessage !== [] && this.dataMessage !== null) {
+					if (this.dataMessage !=[''] && this.dataMessage != null) {
 						var lenghtObj = this.dataMessage.length;
-						if (lenghtObj >1 && this.dataMessage[lenghtObj - 1].user.id === msg.user.id) {
+						if (lenghtObj >=1 && this.dataMessage[lenghtObj - 1].user.id === msg.user.id) {
 							this.dataMessage[lenghtObj - 1].message.push(msg.message[0]);
 						} else {
 							this.dataMessage.push(msg);
