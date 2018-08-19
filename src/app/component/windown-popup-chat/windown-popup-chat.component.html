@@ -1,52 +1,44 @@
 
-<!-- Window-popup-CHAT for responsive min-width: 768px -->
-
-<div class="ui-block popup-chat popup-chat-responsive open chatRealtime" id='chatRealtime'>
-
-	<div class="modal-content">
+<div class="ui-block popup-chat popup-chat-responsive open chatRealtime" *ngFor="let itemFriends of dataFriends" id='chatRealtime_{{itemFriends.uid_user}}'>
+	<div class="modal-content" *ngIf="myInfo">
 		<div class="modal-header">
 			<span class="icon-status online"></span>
-			<h6 class="title" >Bùi Ngọc Đức</h6>
+			<h6 class="title">{{itemFriends.name}} </h6>
 			<div class="more">
 				<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-				<svg class="olymp-little-delete js-chat-open" (click)="openChat()"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+				<svg class="olymp-little-delete"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
 			</div>
 		</div>
 		<div class="modal-body">
-			<div class="mCustomScrollbar">
-				<ul class="notification-list chat-message chat-message-field">
-					<!-- <div *ngIf="dataMessage"> -->
-					<li *ngFor="let messages of dataMessage">
-
-						<div class="author-thumb" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'">
-							<img src="assets/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
-						</div>
-						<div class="notification-event" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'">
-							<span class="chat-message-item" [ngClass]="messages.user.id == myId ? 'addFloatRight': 'addFloatLeft'" *ngFor="let itemMessage of messages.message" >{{itemMessage.message}}</span>
-						<!-- 	<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span> -->
-						</div>
-					</li>
-					<!-- </div> -->
+			<div class="mCustomScrollbar" data-mcs-theme="dark">
+				<ul class="notification-list chat-message chat-message-field" id="style-4">
+					<a href="javascript:;" *ngFor="let messages of dataMessage"> 
+						<li *ngIf="messages.channel == itemFriends.channel" [ngClass]="messages.user.id == myInfo.id ? 'my_message': 'friend_message'"  >
+							<div class="author-thumb" *ngIf="messages.channel == itemFriends.channel">
+								<img src="{{messages.user.avatar}}" alt="author">
+							</div>
+							<div class="notification-event" *ngIf="messages.channel == itemFriends.channel">
+								<span class="chat-message-item" *ngFor="let itemMessage of messages.message">{{itemMessage.message}}</span>
+							</div>
+						</li>
+					</a>
 				</ul>
-			 
+			</div>
+		</div>
+		<form class="need-validation" #loginForm=ngForm>
+
+			<div class="form-group label-floating is-empty">
+				<label class="control-label">Nhập gì đó...</label>
+				<textarea class="form-control box_chat_clear" (keypress)="changeCommentTextera($event)" (keyup.enter)="sendMsg(itemFriends.uid_user)" id="box_chat"></textarea>
+				<div class="add-options-message">
+					<a href="javascript:;" class="options-message" (click)="sendMsg(itemFriends.uid_user)">
+						<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+					</a>
+				</div>
 			</div>
 
-			<form class="need-validation" #loginForm=ngForm (ngSubmit)="sendMessages()">
+		</form>
 
-				<div class="form-group label-floating is-empty">
-					<label class="control-label">Nhập gì đó...</label>
-					<textarea class="form-control" (change)="changeCommentTextera($event)" (keyup.enter)="sendMsgbyKeyEnter($event)" id="box_chat"></textarea>
-					<div class="add-options-message">
-						<a href="javascript:;" class="options-message" (click)="sendButtonClick()">
-							<svg class="olymp-computer-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
-						</a>
-					</div>
-				</div>
 
-			</form>
-		</div>
 	</div>
-
 </div>
-
-<!-- ... end Window-popup-CHAT for responsive min-width: 768px -->

@@ -1,11 +1,11 @@
 <!-- Fixed Sidebar Right -->
-
+<div *ngIf="dataFriend"> 
 <div class="fixed-sidebar right">
 	<div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
 
 		<div class="mCustomScrollbar" data-mcs-theme="dark">
-			<ul class="chat-users" *ngIf="dataFriends">
-				<li class="inline-items js-chat-open" *ngFor="let itemfriend of dataFriends" (click)="openChat(itemfriend.id)">
+			<ul class="chat-users">
+				<li class="inline-items js-chat-open" *ngFor="let itemfriend of dataFriend" (click)="openChat(itemfriend?.uid_user)">
 					<div class="author-thumb">
 						<img alt="author" src="{{itemfriend.avatar}}" class="avatar">
 						<span class="icon-status online"></span>
@@ -35,13 +35,13 @@
 				<a href="#">Cài đặt</a>
 			</div>
 			<ul class="chat-users">
-				<li class="inline-items js-chat-open" *ngFor="let itemfriend of dataFriends">
+				<li class="inline-items js-chat-open" *ngFor="let itemfriend1 of dataFriend">
 					<div class="author-thumb">
-						<img alt="author" src="{{itemfriend.avatar}}" class="avatar">
+						<img alt="author" src="{{itemfriend1.avatar}}" class="avatar">
 						<span class="icon-status online"></span>
 					</div>
 					<div class="author-status">
-						<a href="javascript:;" [routerLink]="['/u', itemfriend.uid_user]" class="h6 author-name">{{itemfriend.name}}</a>
+						<a href="javascript:;" [routerLink]="['/u', itemfriend1.uid_user]" class="h6 author-name">{{itemfriend1.name}}</a>
 						<!-- <span class="status">ONLINE</span> -->
 					</div>
 				</li>
@@ -68,4 +68,6 @@
 </div>
 
 <!-- ... end Fixed Sidebar Right -->
+ 
 
+</div>

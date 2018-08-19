@@ -8,22 +8,27 @@ declare var $ :any;
 	styleUrls: ['./sidebar-right-fixed.component.css']
 })
 export class SidebarRightFixedComponent implements OnInit {
-public dataFriends;
+	public dataFriend;
+
 	constructor(
 		private Api: ApiService,
-		) { }
+		) {
+		this.Api.getListFriends().subscribe(data=>{
+			this.dataFriend = data;
+		});
+	}
 
 	ngOnInit() {
-		this.Api.getListFriends().subscribe(data=>{
-			this.dataFriends = data;
-		});
+
 	}
 
 
 
 
-	openChat(user_id){
-		$('#chatRealtime').toggleClass('open-chat');
+	openChat(uid_user){
+		$('.chatRealtime').removeClass('open-chat');
+		// this.datauserchat = uid_user;
+		$('#chatRealtime_'+uid_user).addClass('open-chat');
 	}
 	openBar(){
 		var ck = $('.fixed-sidebar');
