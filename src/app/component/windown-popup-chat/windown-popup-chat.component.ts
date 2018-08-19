@@ -76,7 +76,9 @@ export class WindownPopupChatComponent implements OnInit {
 	}
 
 	sendMsg(uid_user) {
-
+		$('.box_chat_clear').val('');
+		$('.box_chat_clear').text('');
+		$('.box_chat_clear').empty();
 		if (this.msgInput != '' && this.msgInput.length > 0) {
 			this.Chat.sendMessageWithUser(uid_user, this.msgInput);
 			var data = {
@@ -95,21 +97,12 @@ export class WindownPopupChatComponent implements OnInit {
 				} else {
 					this.dataMessage.push(data);
 				}
-				$('.box_chat_clear').val('');
-				$('.box_chat_clear').text('');
-				$('.box_chat_clear').empty();
 			} else {
 				this.dataMessage = [data];
 				console.log(this.dataMessage);
-				$('.box_chat_clear').val('');
-				$('.box_chat_clear').text('');
-				$('.box_chat_clear').empty();
 			}
 		} else {
 			console.log('nhap gi di');
-			$('.box_chat_clear').val('');
-			$('.box_chat_clear').text('');
-			$('.box_chat_clear').empty();
 		}
 	}
 
