@@ -106,6 +106,9 @@ export class WindownPopupChatComponent implements OnInit {
 		}
 	}
 
-
+closeMsg(){
+	$('.chatRealtime').hide();
+	// $('.chatRealtime').removeClass('open-chat');
+}
 
 }

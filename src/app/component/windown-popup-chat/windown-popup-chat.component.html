@@ -1,12 +1,12 @@
 
-<div class="ui-block popup-chat popup-chat-responsive open chatRealtime" *ngFor="let itemFriends of dataFriends" id='chatRealtime_{{itemFriends.uid_user}}'>
+<div class="ui-block popup-chat popup-chat-responsive open-chat chatRealtime" *ngFor="let itemFriends of dataFriends" id='chatRealtime_{{itemFriends.uid_user}}' style="display: none">
 	<div class="modal-content" *ngIf="myInfo">
 		<div class="modal-header">
 			<span class="icon-status online"></span>
 			<h6 class="title">{{itemFriends.name}} </h6>
 			<div class="more">
 				<svg class="olymp-three-dots-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-				<svg class="olymp-little-delete"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+				<svg class="olymp-little-delete" (click)="closeMsg()"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
 			</div>
 		</div>
 		<div class="modal-body">

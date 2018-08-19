@@ -26,9 +26,9 @@ export class SidebarRightFixedComponent implements OnInit {
 
 
 	openChat(uid_user){
-		$('.chatRealtime').removeClass('open-chat');
+		$('.chatRealtime').hide();
 		// this.datauserchat = uid_user;
-		$('#chatRealtime_'+uid_user).addClass('open-chat');
+		$('#chatRealtime_'+uid_user).show();
 	}
 	openBar(){
 		var ck = $('.fixed-sidebar');
