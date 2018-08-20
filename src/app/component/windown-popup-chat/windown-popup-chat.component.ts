@@ -51,6 +51,8 @@ export class WindownPopupChatComponent implements OnInit {
 					} else {
 						this.dataMessage = [msg];
 					}
+					// scoll to bottom msg
+					$('#style-4').animate({scrollTop: $('#style-4')[0].scrollHeight}, 500);
 				});
 				this.myInfo = data;
 			},
@@ -76,6 +78,10 @@ export class WindownPopupChatComponent implements OnInit {
 	}
 
 	sendMsg(uid_user) {
+		
+		 $('#style-4').animate({scrollTop: $('#style-4')[0].scrollHeight}, 500);
+
+		// $('.chat-message-field').animate({scrollTop: $('.chat-message-field').innerHeight()});
 		$('.box_chat_clear').val('');
 		$('.box_chat_clear').text('');
 		$('.box_chat_clear').empty();
