@@ -52,6 +52,24 @@ hasWhiteSpace(s)
 return true;
 }
 
+getBaseUrl ()  {
+    var file    = document.querySelector('input[type=file]')['files'][0];
+    var reader  = new FileReader();
+    var baseString;
+    reader.onloadend = function () {
+        baseString = reader.result;
+    };
+    console.log(baseString); 
+}
+
+encodeImageFileAsURL(element) {
+  var file = element[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    console.log('RESULT', reader.result)
+  }
+  reader.readAsDataURL(file);
+}
 
 
 }

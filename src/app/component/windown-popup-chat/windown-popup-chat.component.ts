@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { ChatService } from '../../service/chat/chat.service';
+import { FunctionService } from '../../service/function.service';
 import * as io from 'socket.io-client';
 declare var jquery: any;
 declare var $: any;
@@ -28,6 +29,7 @@ export class WindownPopupChatComponent implements OnInit {
 	constructor(
 		private Api: ApiService,
 		private Chat: ChatService,
+		private functionMain: FunctionService,
 		) {
 		this.socket = io('http://localhost:9999');
 		this.Api.getListFriends().subscribe(data => {
@@ -79,7 +81,7 @@ export class WindownPopupChatComponent implements OnInit {
 
 	sendMsg(uid_user) {
 		
-		 $('#style-4').animate({scrollTop: $('#style-4')[0].scrollHeight}, 500);
+		$('#style-4').animate({scrollTop: $('#style-4')[0].scrollHeight}, 500);
 
 		// $('.chat-message-field').animate({scrollTop: $('.chat-message-field').innerHeight()});
 		$('.box_chat_clear').val('');
@@ -112,9 +114,38 @@ export class WindownPopupChatComponent implements OnInit {
 		}
 	}
 
-closeMsg(){
-	$('.chatRealtime').hide();
+	closeMsg(){
+		$('.chatRealtime').hide();
 	// $('.chatRealtime').removeClass('open-chat');
+}
+onScrollGetMsg(event){
+	if (event.target.scrollTop <1) {
+		console.log('loading.......');
+	}
+}
+
+changeUploadImage(event){
+	var checkfile=true;
+	$('.show_img_before_upload').empty();
+	const file = event.target.files;
+	var ckUnit ='';
+	for (var i = 0; i < file.length; ++i) {
+		if (file[i].type == "image/png" || file[i].type == "image/jpeg") {
+			ckUnit += `<img style="width:100%;height: 60px !important;object-fit: cover;" src="${URL.createObjectURL(event.target.files[i])}">`;
+		}else{
+			checkfile=false;
+			break;
+		}
+	}
+	if (checkfile) {
+		console.log(this.functionMain.encodeImageFileAsURL(file));
+		$('.show_img_before_upload').append(ckUnit);
+		// this.FileTest = event.target.files;
+		// this.sizeObject = file.length;
+	}else{
+		alert('định dạng file ko đúng');
+	}
+
 }
 
 }
