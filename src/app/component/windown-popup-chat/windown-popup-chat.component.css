@@ -36,7 +36,7 @@ ul.chat-message-field{
 
 
 
- 
+
 .my_message .author-thumb{
 	float: right;
 }
@@ -71,7 +71,7 @@ ul.chat-message-field{
 	object-fit: cover;
 }
 
- 
+
 
 
 #style-4::-webkit-scrollbar-track
@@ -93,4 +93,34 @@ ul.chat-message-field{
 }
 .popup-chat .chat-message-field li:last-child{
 	margin-bottom: 0;
+}
+#img_pop_upload{
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: inline-block;
+	border: none;
+	outline: none;
+}
+.show_img_before_upload{
+	width: 100%;
+	display: grid;
+	grid-template-columns: 24% 24% 24% 24%;
+	grid-row-gap: 5px;
+	grid-column-gap: 5px;
+	max-height: 65px;
+	overflow-y: auto;
+}
+.show_img_before_upload #im_up{
+	width: 100%;
+	height: 60px !important;
+	object-fit: cover;
+}
+img#im_up {
+    height: 65px;
+    object-fit: cover;
+    width: 100%;
 }

@@ -4,8 +4,8 @@ import { TokenService } from '../../service/token.service';
 import { NewsfeedService } from '../../service/newsfeed.service';
 import { ApiService } from '../../service/api.service';
 import { FunctionService } from '../../service/function.service';
-
-
+import * as io from 'socket.io-client';
+import { environment } from '../../../environments/environment';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -14,13 +14,15 @@ declare var $ :any;
   styleUrls: ['./header-bp.component.css']
 })
 export class HeaderBpComponent implements OnInit {
-
+  public socket;
   constructor(
   	private token:TokenService,
   	private router:Router,
     private ApiService:ApiService,
     private functions:FunctionService,
-    ) { }
+    ) {
+    this.socket = io(environment.chat_socket);
+  }
 
   public dataUser;
   public dataRequestFriend;
@@ -32,6 +34,12 @@ export class HeaderBpComponent implements OnInit {
     this.ApiService.getMyInfo().subscribe(
       data=>{
         this.dataUser = data;
+
+        this.socket.on('sendFriendToCl_'+this.dataUser.id, dataRq => {
+          this.dataRequestFriend.push(dataRq);
+          this.lenghtRQfriends +=1;
+        })
+
       },Error=>{
         alert(' có lỗi trong quá tring lấy user data');
       }
@@ -40,12 +48,12 @@ export class HeaderBpComponent implements OnInit {
     this.ApiService.getRequestFriend().subscribe(
       data=>{
         this.dataRequestFriend = data;
+         console.log(this.dataRequestFriend);
         if (this.dataRequestFriend.lenght != 0) {
           this.lenghtRQfriends = this.dataRequestFriend.length;
         }else{
-           this.lenghtRQfriends = 0;
+          this.lenghtRQfriends = 0;
         }
-
       },Error=>{
         console.log(Error);
       }
@@ -115,6 +123,7 @@ export class HeaderBpComponent implements OnInit {
 
     this.ApiService.miunusFriends({user_id:user_id2}).subscribe(
       data=>{
+        console.log(data);
         var findIndex = this.functions.findIndexInObjectById(this.dataRequestFriend, user_id2);
         this.dataRequestFriend.splice([findIndex], 1);
         this.lenghtRQfriends -=1;

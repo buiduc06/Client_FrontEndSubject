@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpRequest, HttpEvent, HttpEventType, HttpResp
 import {Observable} from "rxjs";
 import {RequestOptions, Request, RequestMethod} from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
+ 
 @Injectable({
 	providedIn: 'root'
 })

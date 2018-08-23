@@ -8,7 +8,9 @@
 				<li class="inline-items js-chat-open" *ngFor="let itemfriend of dataFriend" (click)="openChat(itemfriend?.uid_user)">
 					<div class="author-thumb">
 						<img alt="author" src="{{itemfriend.avatar}}" class="avatar">
-						<span class="icon-status online"></span>
+						<span class="icon-status offline" id="change_online_{{itemfriend.uid_user}}">
+							<div class="status_on" id="status_on_{{itemfriend.uid_user}}" data-msg="1">1</div>
+						</span>
 					</div>
 				</li>
 			</ul>

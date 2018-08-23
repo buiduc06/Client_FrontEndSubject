@@ -4,9 +4,11 @@ import { NewsfeedService } from '../service/newsfeed.service';
 import { TokenService } from '../service/token.service';
 import { ApiService } from '../service/api.service';
 import { FunctionService } from '../service/function.service';
+import { ChatService } from '../service/chat/chat.service';
 import { Router } from '@angular/router';
 import { HostListener} from "@angular/core";
-
+import { environment } from '../../environments/environment';
+import * as io from 'socket.io-client';
 declare var jquery:any;
 declare var $ :any;
 
@@ -18,15 +20,18 @@ declare var $ :any;
 })
 export class NewsFeedComponent implements OnInit {
 	public myInfo;
-
+	public socket;
 	constructor(
 		private NewsFeed: NewsfeedService,
 		private router: Router,
 		private Token: TokenService,
 		private functions: FunctionService,
 		private Api: ApiService,
-		private http: HttpClient
-		) {}
+		private http: HttpClient,
+		private chat: ChatService
+		) {
+		this.socket = io(environment.chat_socket);
+	}
 	public listPost;
 	public error:null;
 	public user_id;
@@ -58,7 +63,21 @@ export class NewsFeedComponent implements OnInit {
 	sizeObject:number;
 	ngOnInit() {
 		// lay thong tin user
-		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data});
+		this.Api.getMyInfo().subscribe(data=>{this.myInfo = data;
+			// sử lý comment realtime
+			this.socket.on('sendcommenttoclient', data => {
+				if (data.user_data.id != this.myInfo.id) {
+					var indexP = this.functions.findIndexInObject(this.listPost, data['post_id']);
+					if (this.listPost[indexP].listcomment === null) {
+						this.listPost[indexP].listcomment= [data];
+
+					}else{
+						this.listPost[indexP].listcomment.push(data);
+					}
+					this.listPost[indexP].action_with_post.awp_comment +=1;
+				}
+			})
+		});
 	//lấy data
 	this.NewsFeed.getNewsFeed().subscribe(
 		data => this.getData(data),
@@ -71,6 +90,7 @@ export class NewsFeedComponent implements OnInit {
 	// sau 3000 ms sẽ load dữ liệu
 	this.getMorePost(); 
 }, 3000);
+
 
 
 }
@@ -211,6 +231,7 @@ pushCommentStatus(post_id){
 		$('.box_comment_d').val('');
 		$('.box_comment_d').text('');
 		$('.box_comment_d').empty();
+		
 		return this.Api.postComment(this.ContentCM, post_id).subscribe(
 			data=>{
 				data['created_at']='vừa xong';
@@ -223,6 +244,18 @@ pushCommentStatus(post_id){
 					this.ContentCM ='';
 				}
 				this.listPost[indexP].action_with_post.awp_comment +=1;
+
+				this.chat.sendCommentToPost({
+					comment:{
+						comment_id:data['comment_id'],
+						content:data['content'],
+						created_at:"vừa xong",
+						image:"",
+						isMyComment:"false",
+						post_id: data['post_id'],
+						user_data:this.myInfo
+					}
+				});
 			},
 			Error=>{alert('comment lỗi');}
 			);

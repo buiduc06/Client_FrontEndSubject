@@ -12,7 +12,7 @@
 			</div>
 			<div class="notification-event">
 				<a href="javascript:void(0)" [routerLink]="['/u', itemF.uid_user]" class="h6 notification-friend">{{itemF.name}}</a>
-				<span class="chat-message-item">{{itemF.generalFriends}} bạn chung</span>
+				<span class="chat-message-item" *ngIf="itemF.generalFriends">{{itemF.generalFriends}} bạn chung</span>
 			</div>
 			<span class="notification-icon">
 				<a href="javascript:void(0)" class="accept-request">
