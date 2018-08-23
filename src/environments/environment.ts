@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
     api_url: 'http://apitest.net/api',
-    chat_socket: 'http://localhost:9999',
+    chat_socket: 'http://localhost:9999', 
 };
 
 /*
