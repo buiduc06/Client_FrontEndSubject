@@ -48,7 +48,6 @@ export class HeaderBpComponent implements OnInit {
     this.ApiService.getRequestFriend().subscribe(
       data=>{
         this.dataRequestFriend = data;
-         console.log(this.dataRequestFriend);
         if (this.dataRequestFriend.lenght != 0) {
           this.lenghtRQfriends = this.dataRequestFriend.length;
         }else{
@@ -123,7 +122,6 @@ export class HeaderBpComponent implements OnInit {
 
     this.ApiService.miunusFriends({user_id:user_id2}).subscribe(
       data=>{
-        console.log(data);
         var findIndex = this.functions.findIndexInObjectById(this.dataRequestFriend, user_id2);
         this.dataRequestFriend.splice([findIndex], 1);
         this.lenghtRQfriends -=1;

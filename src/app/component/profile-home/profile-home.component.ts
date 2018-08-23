@@ -128,7 +128,6 @@ deletePost(post_id){
 }
 
 getData(data){
-	console.log(data);
 	this.listPost = data;
 };
 getMorePost(){

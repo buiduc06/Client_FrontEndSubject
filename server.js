@@ -6,15 +6,6 @@ io.on('connection', function(socket){
 	console.log('connect');
 
 	socket.on('changeOnline', function(data){
-		var objUser = [
-		{user_id:data,socketid:socket.id}
-		]
-		if (objMsg == {}) {
-		objMsg = objUser;
-		}else{
-			objMsg.push(objUser);
-		}
-		console.log(objMsg);
 		io.emit('sendStatusUser', data.uid_user)
 	})
 

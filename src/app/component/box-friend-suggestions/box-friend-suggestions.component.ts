@@ -24,7 +24,6 @@ export class BoxFriendSuggestionsComponent implements OnInit {
   	this.api.getListSuggestFriends().subscribe(
   		data=>{
   			this.listFriend = data;
-        console.log(data);
       },Error=>{
         console.log(Error);
       }
@@ -36,7 +35,6 @@ export class BoxFriendSuggestionsComponent implements OnInit {
       data =>{
         var indexD = this.fcData.findIndexInObjectById(this.listFriend, data);
         this.listFriend.splice(indexD,1);
-        console.log(data);
         this.chat.addFriendRealtime(user_id);
       },Error=>{
         console.log(Error);

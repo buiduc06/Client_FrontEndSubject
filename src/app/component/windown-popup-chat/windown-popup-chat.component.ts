@@ -37,7 +37,6 @@ export class WindownPopupChatComponent implements OnInit {
 		this.Api.getListFriends().subscribe(data => {
 			this.dataFriends = data;
 			this.socket.on('sendStatusUser', data => {
-				console.log(data);
 				$('#change_online_'+data).removeClass('offline');
 				$('#change_online_'+data).addClass('online');
 
@@ -59,7 +58,6 @@ export class WindownPopupChatComponent implements OnInit {
 					} else {
 						this.dataMessage = [msg];
 					}
-					console.log(msg);
 					// mở cửa số nếu có tin nhắn đến
 					if ($('#chatRealtime_'+msg.user.uid_user).is(':hidden')) {
 						$('.chatRealtime').hide();
@@ -111,8 +109,6 @@ export class WindownPopupChatComponent implements OnInit {
 			};
 
 			if (this.dataMessage != null) {
-				console.log(this.dataMessage);
-
 				let lenghtObj = this.dataMessage.length;
 				if (lenghtObj >=1 && this.dataMessage[lenghtObj - 1].channel == data.channel  && this.dataMessage[lenghtObj - 1].user.id === this.myInfo.id) {
 					this.dataMessage[lenghtObj - 1].message.push(data.message[0]);
@@ -121,7 +117,6 @@ export class WindownPopupChatComponent implements OnInit {
 				}
 			} else {
 				this.dataMessage = [data];
-				console.log(this.dataMessage);
 			}
 		} else {
 			console.log('nhap gi di');

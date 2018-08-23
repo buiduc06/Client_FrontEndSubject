@@ -46,7 +46,6 @@ export class NewsFeedComponent implements OnInit {
 		location:null,
 		type:null,
 		status:null,
-
 	};
 
 	public editPost = {
@@ -146,7 +145,6 @@ updateActionStatus(idPost, type){
 }
 
 getData(data){
-	console.log(data);
 	this.listPost = data;
 };
 
@@ -185,16 +183,9 @@ handleError(error){
 	this.error = error.error.error;
 }
 
-commentF(id){
-
-	alert('msg');
-}
-
 linkRedirectProfile(id: number){
 	return this.router.navigateByUrl('/u/'+id);
 }
-
-
 
 toggleComment(post_id){
     $('#show_list_comment_'+post_id).slideToggle(); //
@@ -220,7 +211,6 @@ changeUpoadImage(event){
 	}else{
 		alert('định dạng file ko đúng');
 	}
-
 }
 
 

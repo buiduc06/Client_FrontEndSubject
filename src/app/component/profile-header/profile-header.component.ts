@@ -28,9 +28,7 @@ export class ProfileHeaderComponent implements OnInit {
 			this.Api.getUserByUid(params).subscribe(
 				data=>{
 					this.DataUser = data;
-					console.log(data);
 					this.isMydata = data['isMydata'];
-					console.log(data);
 				},
 				Error=>{
 					console.log(Error);
