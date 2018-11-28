@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 	providedIn: 'root'
 })
 export class NewsfeedService {
-	private baseUrl = 'http://apitest.net/api/Feed';
+	private baseUrl = 'https://apipanda.ducpanda.info/api/Feed';
 	constructor(private http: HttpClient) {}
 
 	getNewsFeed(){

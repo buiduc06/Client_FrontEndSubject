@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 	private iss = {
-		login: 'http://apitest.net/api/login',
-		signup: 'http://apitest.net/api/signup',
-		logout: 'http://apitest.net/api/logout',
+		login: 'https://apipanda.ducpanda.info/api/login',
+		signup: 'https://apipanda.ducpanda.info/api/signup',
+		logout: 'https://apipanda.ducpanda.info/api/logout',
 	};
 	constructor() { }
 

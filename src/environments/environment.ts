@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-    api_url: 'http://apitest.net/api',
-    chat_socket: 'http://localhost:9999', 
+    api_url: 'https://apipanda.ducpanda.info/api',
+    chat_socket: 'https://social.ducpanda.info:8080', 
 };
 
 /*

@@ -8,8 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 	providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://apitest.net/api';
-  private userData = 'http://apitest.net/api/user';
+  private baseUrl = 'https://apipanda.ducpanda.info/api';
+  private userData = 'https://apipanda.ducpanda.info/api/user';
 
   constructor(
     private http: HttpClient,

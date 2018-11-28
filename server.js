@@ -1,7 +1,16 @@
-var io = require('socket.io')(9999)
-console.log('connected port 9999')
-var datat =[]
-var objMsg = {}
+var fs = require( 'fs' );
+var app = require('express')();
+var https        = require('https');
+var server = https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/social.ducpanda.info/privkey.pem'), 
+	cert: fs.readFileSync('/etc/letsencrypt/live/social.ducpanda.info/cert.pem'), 
+	ca: fs.readFileSync('/etc/letsencrypt/live/social.ducpanda.info/chain.pem'), 
+    requestCert: false,
+    rejectUnauthorized: false
+},app);
+server.listen(8080);
+
+var io = require('socket.io').listen(server);
 io.on('connection', function(socket){ 
 	console.log('connect');
 
