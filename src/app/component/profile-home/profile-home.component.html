@@ -1,3 +1,4 @@
+
 <div class="container" *ngIf="listPost && DataUser">
 	<div class="row">
 
@@ -185,7 +186,7 @@
 
 					<ul class="widget w-last-photo js-zoom-gallery" *ngIf="DataUser?.listImgUpload">
 						<li *ngFor="let itemImg of DataUser.listImgUpload">
-							<a href="{{itemImg}}">
+							<a href="{{itemImg}}"  target="_blank">
 								<img src="{{itemImg}}" alt="photo">
 							</a>
 						</li>
@@ -268,3 +269,4 @@
 			</div>
 		</div>
 	</div>
+

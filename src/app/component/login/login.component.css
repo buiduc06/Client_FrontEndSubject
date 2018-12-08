@@ -112,3 +112,10 @@ html , body {
 }
 
 .content { padding: 1.5em; }
+.modal-dialog{
+  max-width: 80%;
+}
+.modal-body p{
+  white-space: pre-wrap;
+  overflow-y: scroll;
+}

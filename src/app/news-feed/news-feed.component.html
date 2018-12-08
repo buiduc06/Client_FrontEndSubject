@@ -61,7 +61,7 @@
 										<svg class="olymp-small-pin-icon"><use xlink:href="assets/svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use></svg>
 									</a> -->
 
-									<button type="submit" class="btn btn-primary btn-md-2" [disabled]="!loginForm.valid">Đăng Bài viết</button>
+									<button type="submit" class="btn btn-primary btn-md-2" [disabled]="!loginForm.valid" [hidden]="isDisabled" (click)="changestatus()" >Đăng Bài viết</button>
 									<!-- <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview</button> -->
 
 								</div>
@@ -113,9 +113,36 @@
 						</p>
 						<a href="javascript:void(0)" *ngIf="itemPost.content.length >600" (click)="seemore(itemPost.post_id)" id="button_see_more_{{itemPost.post_id}}">see more</a>
 
-						<div class="post-thumb" *ngIf="itemPost.listImage">
-							<img *ngFor="let itemImg of itemPost.listImage" (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+						<div class="post-thumb js-zoom-gallery" *ngIf="itemPost.listImage?.length == 1">
+							<a href="{{itemImg.image}}"  *ngFor="let itemImg of itemPost.listImage" class="col col-12-width">
+							<img (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+</a>
+
 						</div>
+
+						<div class="post-block-photo js-zoom-gallery" *ngIf="itemPost.listImage?.length > 1 && itemPost.listImage?.length < 6">
+							<a href="{{itemImg.image}}"  *ngFor="let itemImg of itemPost.listImage" class="col col-3-width">
+								<img (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+							</a>
+
+						</div>
+
+						<div class="post-block-photo js-zoom-gallery" *ngIf="itemPost.listImage?.length > 6">
+							<a href="{{itemImg.image}}" [ngClass]="i == 1 || i == 0 ? 'half-width' : 'col-3-width' "  *ngFor="let itemImg of itemPost.listImage | slice:0:4; let i = index" class="col" [hidden]="i >= 4">
+
+								<img (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+							</a>
+
+							<a href="{{itemImg.image}}"  *ngFor="let itemImg of itemPost.listImage ; let i = index" class="more-photos col-3-width" [hidden]="i <= 5">
+
+								<img (click)="openImg(itemImg.image)" src="{{itemImg.image}}" alt="photo">
+								<span class="h2">+{{itemPost.listImage?.length-4}}</span>
+							</a>
+							
+						</div>
+
+
+
 
 						<div class="post-additional-info inline-items" >
 
@@ -291,4 +318,4 @@
 	</div>
 
 	
-<app-windown-popup-chat></app-windown-popup-chat>
+	<app-windown-popup-chat></app-windown-popup-chat>

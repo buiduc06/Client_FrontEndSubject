@@ -88,13 +88,19 @@ export class NewsFeedComponent implements OnInit {
 	this.autoload = setInterval(() => {
 	// sau 3000 ms sẽ load dữ liệu
 	this.getMorePost(); 
-}, 3000);
+}, 5000);
 
 
 
 }
+public isDisabled = false;
+changestatus(){
+	this.isDisabled = true;
+
+}
 
 postNewsFeed(){
+
 	this.NewsFeed.postNewsFeed(this.postNews).subscribe(
 		maindata => {
 			if (this.FileTest !=null) {
@@ -107,6 +113,7 @@ postNewsFeed(){
 						this.FileTest =null;
 						maindata['listImage'] = data;
 						this.listPost.unshift(maindata);
+						this.isDisabled = false;
 					},Error => {
 						alert("thêm ảnh thất bại");
 					});
@@ -115,6 +122,7 @@ postNewsFeed(){
 				$('#clean_inp').val('');
 				$('#img_pop_upload').empty();
 				this.listPost.unshift(maindata);
+				this.isDisabled = false;
 			}
 		},Error => {
 			alert("tạo bài viết thất bại");
@@ -308,8 +316,27 @@ postEditMyPost(){
 
 openImg(link){
 	// window.location.href = link;
-	$('#change_img_ch').attr('src', link);
-	$('#show_img').modal('show');
+	// $('#change_img_ch').attr('src', link);
+	// $('#show_img').modal('show');
+	$('.js-zoom-gallery').each(function () {
+		$(this).magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			gallery: {
+				enabled: true
+			},
+			removalDelay: 500, //delay removal by X to allow out-animation
+			callbacks: {
+				beforeOpen: function () {
+					// just a hack that adds mfp-anim class to markup
+					this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+					this.st.mainClass = 'mfp-zoom-in';
+				}
+			},
+			closeOnContentClick: true,
+			midClick: true
+		});
+	});
 }
 deleteComment(comment_id, post_id){
 	if (confirm('bạn có chắc chắn muốn xóa bình luận này?')) {

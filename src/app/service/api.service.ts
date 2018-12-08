@@ -131,8 +131,9 @@ export class ApiService {
   addMessages(data){
     return this.http.post(`${this.userData}/addMessages`, data);
   }
-  getMessages(data){
-    return this.http.post(`${this.userData}/getMessages`, data);
+  getMessages(){
+    return this.http.get(`${this.userData}/getMessages`);
   }
 
 }
+
